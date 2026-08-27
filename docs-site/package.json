@@ -1,0 +1,15 @@
+{
+  "name": "td-sdk-docs",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TD SDK 对接文档站点（VitePress）",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev --host 127.0.0.1 --port 5173",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}
