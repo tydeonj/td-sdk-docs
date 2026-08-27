@@ -4,6 +4,7 @@ export default defineConfig({
   title: 'TD SDK',
   description: 'TD 聚合 SDK 对接文档 · Android / iOS',
   lang: 'zh-CN',
+  base: process.env.GITHUB_ACTIONS ? '/td-sdk-docs/' : '/',
   srcDir: '../TD_SDK_对接文档',
   srcExclude: ['README.md'],
   cleanUrls: true,

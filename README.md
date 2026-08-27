@@ -2,6 +2,8 @@
 
 对外文档（第一稿 **1.0.0**）。SDK 版本：Android / iOS `1.0.0.1`。
 
+在线阅读：https://tydeonj.github.io/td-sdk-docs/
+
 - Markdown：[TD_SDK_对接文档/](./TD_SDK_对接文档/)
 - 网页站（VitePress）：[docs-site/](./docs-site/)
 - 隐私披露：[TD_SDK_国内隐私合规使用说明.md](./TD_SDK_国内隐私合规使用说明.md)
