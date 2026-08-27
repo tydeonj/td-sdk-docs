@@ -15,17 +15,11 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 **Init 还没回调就 Load？**  
 不要。尤其是冷启动开屏，等 Init 成功。
 
-**App ID 写空会不会崩？**  
-不会。双端都回调 `onFailed`（1001）。
-
-**对象 `onDestroy` 之后又 Load / Show？**  
-会收到失败回调（1001），不再静默返回。激励/插屏正在展示时再 Show，若上一页已销毁或超过 10 分钟，会先解开锁再试。
-
-**App ID 写错会闪退吗？**  
+**App ID 写空会闪退吗？**  
 不会。空 AppId / 空 Context 走 `onFailed`（1001）。
 
 **对象已经 `onDestroy` 再 Load / Show？**  
-会收到失败回调（1001），不会再哑巴返回。`onDestroy` 不清广告池，要清缓存请再调 `clearCache()`。
+会收到失败回调（1001），不会再哑巴返回。激励/插屏正在展示时再 Show，若上一页已销毁或超过 10 分钟，会先解开锁再试。`onDestroy` 不清广告池，要清缓存请再调 `clearCache()`。
 
 **怎么拿到当前广告信息？**  
 各格式都有 `getAdInfo()`，对应最近一次 Load 成功或即将 Show 的 `TDAdInfo`。原生自渲染也可在这里读 `renderType` / `nativeMaterial`。
