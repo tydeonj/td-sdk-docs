@@ -42,7 +42,7 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 缺主图：没把 `imageUrl` 填进带 `td_image` 的 ImageView。  
 点不动：Android 控件要 `clickable`；iOS `UILabel` 要 `userInteractionEnabled=YES`；并打上 TAG。
 
-**京东 Banner 被压扁？**  
+**JinDai Banner 被压扁？**  
 官方高度自适应。容器不要锁 50dp，建议 ≥200dp。见 [08](./08_横幅广告.md)。
 
 **开屏容器必须全屏吗？**  

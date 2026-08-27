@@ -59,5 +59,5 @@ SDK **不会**在 Load 成功后自动 Show。原生自渲染要先拼布局再 
 | 激励 | `TDReward` | 无 |
 | 插屏 | `TDInterstitial` | 无 |
 | 开屏 | `TDSplash` | 近全屏 overlay |
-| 横幅 | `TDBanner` | 宽撑满、高 ≥50（京东建议 ≥200） |
+| 横幅 | `TDBanner` | 宽撑满、高 ≥50（JinDai 建议 ≥200） |
 | 原生 | `TDNative` | ≥250；自渲染先打 TAG 再 Show |
