@@ -29,6 +29,8 @@ jobs:
         run: |
           npm ci
           npm run docs:build
+          touch .vitepress/dist/.nojekyll
+          cp .vitepress/dist/index.html .vitepress/dist/404.html || true
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
