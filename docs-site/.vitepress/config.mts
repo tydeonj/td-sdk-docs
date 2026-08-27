@@ -1,4 +1,8 @@
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
+
+const siteRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
 export default defineConfig({
   title: 'TD SDK',
@@ -10,6 +14,17 @@ export default defineConfig({
   cleanUrls: true,
   ignoreDeadLinks: true,
   lastUpdated: true,
+  vite: {
+    resolve: {
+      alias: {
+        vue: resolve(siteRoot, 'node_modules/vue'),
+        'vue/server-renderer': resolve(siteRoot, 'node_modules/vue/server-renderer'),
+      },
+    },
+    server: {
+      fs: { allow: [resolve(siteRoot, '..')] },
+    },
+  },
   themeConfig: {
     siteTitle: 'TD SDK',
     logo: undefined,
