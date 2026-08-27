@@ -22,8 +22,8 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 **JinDai / AdGain 为什么没广告？**  
 这两家依赖 OAID（Android）或 IDFA（iOS）。四门未开、OAID 还没回写、或用户拒绝 ATT，都可能无填充。见 [04](./04_初始化与隐私.md)。
 
-**`resolveOaidForAdn` 是 null？**  
-采集是异步的。等厂商 SDK 回写后再 Load，不要在 Init 当帧立刻请求。
+**刚 Init 完就 Load，OAID 还是空的？**  
+采集是异步的。等标识回写后再 Load，不要在 Init 当帧立刻请求。
 
 **必须接 MSA / ATTracking？**  
 要接 JinDai、AdGain 等依赖设备标识的源时，需要。其它源按该平台文档。
