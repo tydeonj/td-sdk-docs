@@ -8,10 +8,7 @@ export default defineConfig({
   srcDir: '../TD_SDK_对接文档',
   srcExclude: ['README.md'],
   cleanUrls: true,
-  ignoreDeadLinks: [
-    /TD_SDK_一期二期/,
-    /project\/demo/,
-  ],
+  ignoreDeadLinks: true,
   lastUpdated: true,
   themeConfig: {
     siteTitle: 'TD SDK',

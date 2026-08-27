@@ -112,7 +112,7 @@ TDAdsSDK.initSdk(context, appId, new TDInitListener() { ... });
 - 一期三源桥（JDSDK / DuskAd / AdGain）及后续直连 Adapter **初始化 ADN 前**读取 `TDAdsSDK.getPrivacyController()` / `privacyController`，映射到对方 `canUse*`。
 - 关闭个性化后，Adapter 须调用对方限制个性化接口（若 ADN 支持）。
 - OAID（Android）/ IDFA（iOS）下传：允许采时优先宿主 `getDevOaid` / `customIdfa`，其次 SDK 已采值。Android 在 `setAuthUID(true)` 后按厂商采集（对齐 TradPlus OaidUtil），再回落 `Android_CN_OAID`。iOS 在 `setAuthUID(true)` 后读系统 IDFA 并缓存（对齐 Android collector）；须 ATT 已授权，SDK 不代弹。都没有则不塞空串，由 ADN 自采。
-- **JinDai、AdGain 依赖 OAID（Android）/ IDFA（iOS），否则不出广告。** 这是对方源填充条件。LiteMob / Sigmob 有值才传；Mintegral 无必须传接口。禁止采时传空，避免对方再采。实现细节见 Android / iOS 技术实现一期 **§5.3**，宿主对接见 [`TD_SDK_对接文档/04_初始化与隐私.md`](./TD_SDK_对接文档/04_初始化与隐私.md)。
+- **JinDai、AdGain 依赖 OAID（Android）/ IDFA（iOS），否则不出广告。** 这是对方源填充条件。LiteMob / Sigmob 有值才传；Mintegral 无必须传接口。禁止采时传空，避免对方再采。宿主对接见 [初始化与隐私](./04_初始化与隐私.md)。
 
 ### 4.6 iOS IDFA / ATT（对照 TradPlus 官方）
 
