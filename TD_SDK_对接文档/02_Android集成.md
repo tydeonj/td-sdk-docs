@@ -1,6 +1,6 @@
 # 02 Android 集成
 
-> 文档版本：1.1.5 · SDK `1.1.2.5`
+> 文档版本：1.1.6 · SDK `1.1.2.6`
 
 先加 TD 核心，再按后台实际用到的平台补仓库和依赖。没接的平台不要加。只加了 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -14,7 +14,7 @@
 | minSdk | 16 |
 | Java | 8 及以上 |
 | 初始化进程 | **仅主进程**（否则 `1002`） |
-| 当前 SDK | `1.1.2.5` |
+| 当前 SDK | `1.1.2.6` |
 
 ---
 
@@ -40,7 +40,7 @@ allprojects {
 复制到 **app 模块** `dependencies`：
 
 ```groovy
-def tdVer = '1.1.2.5'
+def tdVer = '1.1.2.6'
 
 implementation "com.tyedo:td-ads-base:${tdVer}"
 implementation "com.tyedo:td-ads-sdk:${tdVer}"

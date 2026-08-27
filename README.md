@@ -1,6 +1,6 @@
 # TD SDK 对接文档
 
-对外文档（**1.1.5**）。SDK 版本：Android / iOS `1.1.2.5`。
+对外文档（**1.1.6**）。SDK 版本：Android / iOS `1.1.2.6`。
 
 在线阅读：https://tydeonj.github.io/td-sdk-docs/
 
