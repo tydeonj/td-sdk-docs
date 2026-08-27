@@ -11,6 +11,11 @@
 
 在线阅读：https://tydeonj.github.io/td-sdk-docs/
 
+官方 Demo（对照用，正式包不要抄里面的广告位 ID）：
+
+- Android：https://github.com/tydeonj/td-sdk-demo-android
+- iOS：https://github.com/tydeonj/td-sdk-demo-ios
+
 ---
 
 ## 怎么读
@@ -153,6 +158,8 @@ SDK **不会**在 Load 成功后自动 Show。原生自渲染要先拼布局再 
 > 文档版本：1.1.6 · SDK `1.1.2.6`
 
 先加 TD 核心，再按后台实际用到的平台补仓库和依赖。没接的平台不要加。只加了 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
+
+对照工程：https://github.com/tydeonj/td-sdk-demo-android
 
 ---
 
@@ -303,6 +310,8 @@ Android 13+ 若使用广告标识，按 Google 要求增加：
 > 文档版本：1.1.6 · SDK `1.1.2.6`
 
 先加 TD 核心，再按后台实际用到的平台加 **TD 模块 + 官方 SDK**。没接的不要加。只加 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
+
+对照工程：https://github.com/tydeonj/td-sdk-demo-ios
 
 ---
 
@@ -1292,7 +1301,10 @@ reward.setCustomParams(p);
 
 ## 3. 官方 Demo 对照（仅内部联调）
 
-需要对照官方 Demo 时，向 TD 技术支持索取 Demo 工程与测试广告位。本文不列出具体 ID。
+官方 Demo（对照用，正式包不要抄里面的广告位 ID）：
+
+- Android：https://github.com/tydeonj/td-sdk-demo-android
+- iOS：https://github.com/tydeonj/td-sdk-demo-ios
 
 Demo 行为约定：
 

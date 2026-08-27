@@ -11,6 +11,11 @@
 
 在线阅读：https://tydeonj.github.io/td-sdk-docs/
 
+官方 Demo（对照用，正式包不要抄里面的广告位 ID）：
+
+- Android：https://github.com/tydeonj/td-sdk-demo-android
+- iOS：https://github.com/tydeonj/td-sdk-demo-ios
+
 ---
 
 ## 怎么读

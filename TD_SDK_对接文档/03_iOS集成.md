@@ -4,6 +4,8 @@
 
 先加 TD 核心，再按后台实际用到的平台加 **TD 模块 + 官方 SDK**。没接的不要加。只加 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
+对照工程：https://github.com/tydeonj/td-sdk-demo-ios
+
 ---
 
 ## 1. 环境

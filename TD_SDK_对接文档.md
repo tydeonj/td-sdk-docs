@@ -4,6 +4,11 @@
 
 在线阅读：https://tydeonj.github.io/td-sdk-docs/
 
+官方 Demo：
+
+- Android：https://github.com/tydeonj/td-sdk-demo-android
+- iOS：https://github.com/tydeonj/td-sdk-demo-ios
+
 | 篇 | 内容 |
 | --- | --- |
 | [01 后台配置](./TD_SDK_对接文档/01_后台配置.md) | 应用 / 广告位 / 广告源 |
