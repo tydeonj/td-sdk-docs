@@ -3,7 +3,7 @@ layout: home
 hero:
   name: TD SDK
   text: 对接文档
-  tagline: Android / iOS 聚合接入 · 文档 1.1.6 · SDK 1.1.2.6
+  tagline: Android / iOS 聚合接入 · 文档 1.1.6 · SDK 1.1.2.7
   actions:
     - theme: brand
       text: 从后台开始

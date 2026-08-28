@@ -1,7 +1,7 @@
 # TD SDK 对接文档
 
 > 文档版本：**1.1.6**  
-> SDK 版本：Android / iOS **`1.1.2.6`**
+> SDK 版本：Android / iOS **`1.1.2.7`**
 
 欢迎使用 TD 聚合 SDK。按下面顺序接入激励、插屏、开屏、横幅、原生。
 
@@ -155,7 +155,7 @@ SDK **不会**在 Load 成功后自动 Show。原生自渲染要先拼布局再 
 
 # 02 Android 集成
 
-> 文档版本：1.1.6 · SDK `1.1.2.6`
+> 文档版本：1.1.6 · SDK `1.1.2.7`
 
 先加 TD 核心，再按后台实际用到的平台补仓库和依赖。没接的平台不要加。只加了 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -171,7 +171,7 @@ SDK **不会**在 Load 成功后自动 Show。原生自渲染要先拼布局再 
 | minSdk | 16 |
 | Java | 8 及以上 |
 | 初始化进程 | **仅主进程**（否则 `1002`） |
-| 当前 SDK | `1.1.2.6` |
+| 当前 SDK | `1.1.2.7` |
 
 ---
 
@@ -197,7 +197,7 @@ allprojects {
 复制到 **app 模块** `dependencies`：
 
 ```groovy
-def tdVer = '1.1.2.6'
+def tdVer = '1.1.2.7'
 
 implementation "com.tyedo:td-ads-base:${tdVer}"
 implementation "com.tyedo:td-ads-sdk:${tdVer}"
@@ -307,7 +307,7 @@ Android 13+ 若使用广告标识，按 Google 要求增加：
 
 # 03 iOS 集成
 
-> 文档版本：1.1.6 · SDK `1.1.2.6`
+> 文档版本：1.1.6 · SDK `1.1.2.7`
 
 先加 TD 核心，再按后台实际用到的平台加 **TD 模块 + 官方 SDK**。没接的不要加。只加 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -323,7 +323,7 @@ Android 13+ 若使用广告标识，按 Google 要求增加：
 | Xcode | 14 及以上 |
 | 接入 | CocoaPods，`use_frameworks! :linkage => :static` |
 | Other Linker Flags | **必须** `-ObjC`（保留 `$(inherited)`） |
-| 当前 SDK | `1.1.2.6` |
+| 当前 SDK | `1.1.2.7` |
 
 ---
 
@@ -336,8 +336,8 @@ platform :ios, '12.0'
 use_frameworks! :linkage => :static
 
 target 'YourApp' do
-  pod 'TDAdsBase', '1.1.2.6'
-  pod 'TDAdsSDK',  '1.1.2.6'
+  pod 'TDAdsBase', '1.1.2.7'
+  pod 'TDAdsSDK',  '1.1.2.7'
 end
 ```
 
@@ -350,7 +350,7 @@ end
 ### JinDai
 
 ```ruby
-pod 'TDAdsJDSDK', '1.1.2.6'
+pod 'TDAdsJDSDK', '1.1.2.7'
 pod 'JinDaiSDK', :subspecs => ['JinDaiSDK']
 ```
 
@@ -359,7 +359,7 @@ pod 'JinDaiSDK', :subspecs => ['JinDaiSDK']
 ### AdGain
 
 ```ruby
-pod 'TDAdsAdGain', '1.1.2.6'
+pod 'TDAdsAdGain', '1.1.2.7'
 pod 'AdGainSDK', '4.2.8.2'
 ```
 
@@ -370,7 +370,7 @@ Trunk 若尚未收录该版本，按 AdGain 官方仓库把 SDK 放到本地后 
 ### LiteMob
 
 ```ruby
-pod 'TDAdsLtmb', '1.1.2.6'
+pod 'TDAdsLtmb', '1.1.2.7'
 pod 'LitemobSDK', '~> 5.5'
 ```
 
