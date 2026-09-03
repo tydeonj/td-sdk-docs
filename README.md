@@ -1,7 +1,7 @@
 # TD SDK 对接文档
 
 > 文档版本：**1.1.6**  
-> SDK 版本：Android / iOS **`1.1.2.7`**
+> SDK 版本：Android / iOS **`1.1.2.8`**
 
 欢迎使用 TD 聚合 SDK。按下面顺序接入激励、插屏、开屏、横幅、原生。
 
@@ -151,11 +151,12 @@ SDK **不会**在 Load 成功后自动 Show。原生自渲染要先拼布局再 
 
 ---
 
+
 ---
 
 # 02 Android 集成
 
-> 文档版本：1.1.6 · SDK `1.1.2.7`
+> 文档版本：1.1.6 · SDK `1.1.2.8`
 
 先加 TD 核心，再按后台实际用到的平台补仓库和依赖。没接的平台不要加。只加了 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -171,7 +172,7 @@ SDK **不会**在 Load 成功后自动 Show。原生自渲染要先拼布局再 
 | minSdk | 16 |
 | Java | 8 及以上 |
 | 初始化进程 | **仅主进程**（否则 `1002`） |
-| 当前 SDK | `1.1.2.7` |
+| 当前 SDK | `1.1.2.8` |
 
 ---
 
@@ -197,7 +198,7 @@ allprojects {
 复制到 **app 模块** `dependencies`：
 
 ```groovy
-def tdVer = '1.1.2.7'
+def tdVer = '1.1.2.8'
 
 implementation "com.tyedo:td-ads-base:${tdVer}"
 implementation "com.tyedo:td-ads-sdk:${tdVer}"
@@ -211,11 +212,11 @@ implementation "com.tyedo:td-ads-sdk:${tdVer}"
 
 ### JinDai
 
-无需额外 Maven。把官方 `JDSDK-*.aar` 放到 `app/libs/`。
+无需额外 Maven。把官方 `YDSDK-release.aar` 放到 `app/libs/`。
 
 ```groovy
 implementation "com.tyedo:jdsdk_ads:${tdVer}"
-implementation files('libs/JDSDK-3.80.9.aar')
+implementation files('libs/YDSDK-release.aar')
 ```
 
 ### AdGain
@@ -303,11 +304,12 @@ Android 13+ 若使用广告标识，按 Google 要求增加：
 
 [04 初始化与隐私](#04-初始化与隐私)（在 `Application.onCreate`、**主进程**调用）。
 
+
 ---
 
 # 03 iOS 集成
 
-> 文档版本：1.1.6 · SDK `1.1.2.7`
+> 文档版本：1.1.6 · SDK `1.1.2.8`
 
 先加 TD 核心，再按后台实际用到的平台加 **TD 模块 + 官方 SDK**。没接的不要加。只加 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -323,7 +325,7 @@ Android 13+ 若使用广告标识，按 Google 要求增加：
 | Xcode | 14 及以上 |
 | 接入 | CocoaPods，`use_frameworks! :linkage => :static` |
 | Other Linker Flags | **必须** `-ObjC`（保留 `$(inherited)`） |
-| 当前 SDK | `1.1.2.7` |
+| 当前 SDK | `1.1.2.8` |
 
 ---
 
@@ -336,8 +338,8 @@ platform :ios, '12.0'
 use_frameworks! :linkage => :static
 
 target 'YourApp' do
-  pod 'TDAdsBase', '1.1.2.7'
-  pod 'TDAdsSDK',  '1.1.2.7'
+  pod 'TDAdsBase', '1.1.2.8'
+  pod 'TDAdsSDK',  '1.1.2.8'
 end
 ```
 
@@ -350,7 +352,7 @@ end
 ### JinDai
 
 ```ruby
-pod 'TDAdsJDSDK', '1.1.2.7'
+pod 'TDAdsJDSDK', '1.1.2.8'
 pod 'JinDaiSDK', :subspecs => ['JinDaiSDK']
 ```
 
@@ -359,7 +361,7 @@ pod 'JinDaiSDK', :subspecs => ['JinDaiSDK']
 ### AdGain
 
 ```ruby
-pod 'TDAdsAdGain', '1.1.2.7'
+pod 'TDAdsAdGain', '1.1.2.8'
 pod 'AdGainSDK', '4.2.8.2'
 ```
 
@@ -370,7 +372,7 @@ Trunk 若尚未收录该版本，按 AdGain 官方仓库把 SDK 放到本地后 
 ### LiteMob
 
 ```ruby
-pod 'TDAdsLtmb', '1.1.2.7'
+pod 'TDAdsLtmb', '1.1.2.8'
 pod 'LitemobSDK', '~> 5.5'
 ```
 
@@ -429,6 +431,7 @@ Build Settings → Other Linker Flags 增加 `-ObjC`。接部分官方 SDK 时�
 ## 6. 下一步
 
 [04 初始化与隐私](#04-初始化与隐私)（在 `application:didFinishLaunchingWithOptions:` 中、用户同意后再 Init）。
+
 
 ---
 
@@ -549,6 +552,7 @@ SDK 的 `setAuthUID` **默认关**。正式 App 按用户授权调用，不要�
 
 按格式：[05 激励](#05-激励视频) · [06 插屏](#06-插屏广告) · [07 开屏](#07-开屏广告) · [08 横幅](#08-横幅广告banner) · [09 原生](#09-原生广告)
 
+
 ---
 
 # 05 激励视频
@@ -570,11 +574,12 @@ Android 创建和展示建议传 `Activity`。
 | 创建（仅一次） | `new TDReward(Context, long)` | `[[TDReward alloc] initWithAdUnitId:]` |
 | 请求 | `loadAd()` | `loadAd` |
 | 可展 | `isReady()` | `isReady` |
+| 场景到达 | `entryAdScenario(sceneId)` → 上报 380 | `entryAdScenario:` |
 | 展示 | `showAd(Activity, sceneId)` | `showAdFrom:sceneId:` |
 | 当前广告 | `getAdInfo()` | `getAdInfo` |
 | 底价 / 参数 / 释放 | `setBidFloor` / `setCustomParams` / `onDestroy` | 同左 |
 
-激励请传登录用户 ID（`setCustomParams` 的 `userId`，或 `setRewardVerify`）。部分平台不传会展示失败。`sceneId` 可选。
+激励请传登录用户 ID（`setCustomParams` 的 `userId`，或 `setRewardVerify`）。部分平台不传会展示失败。`sceneId` 可选。到达展示场景时调 `entryAdScenario`（上报 380），不要在 `isReady` 轮询里调。
 
 ---
 
@@ -624,7 +629,7 @@ reward.setAdListener(new TDRewardListener() {
     @Override public void onBiddingEnd(TDAdInfo info, TDError error) { }
 });
 reward.loadAd();
-if (reward.isReady()) {
+if (reward.entryAdScenario("your_scene")) {
     reward.showAd(this, "your_scene");
 }
 ```
@@ -636,7 +641,7 @@ self.reward = [[TDReward alloc] initWithAdUnitId:YOUR_AD_UNIT_ID];
 [self.reward setCustomParams:@{ @"userId": @"your_app_user_id" }];
 [self.reward setAdListener:self];
 [self.reward loadAd];
-if ([self.reward isReady]) {
+if ([self.reward entryAdScenario:@"your_scene"]) {
     [self.reward showAdFrom:self sceneId:@"your_scene"];
 }
 ```
@@ -657,13 +662,14 @@ if ([self.reward isReady]) {
 - (void)onBiddingEnd:(TDAdInfo *)info error:(TDError *)error { }
 ```
 
+
 ---
 
 # 06 插屏广告
 
 > 文档版本：1.1.5
 
-全屏图片或视频，适合关卡切换、返回首页。提前加载，`isReady` 再 Show。不需要容器。注意事项与激励相同：失败不要立刻重试；离开页面 `onDestroy`。
+全屏图片或视频，适合关卡切换、返回首页。提前加载，`isReady` 再 Show。不需要容器。注意事项与激励相同：失败不要立刻重试；离开页面 `onDestroy`。到达展示场景时调 `entryAdScenario`（上报 380），不要在 `isReady` 轮询里调。
 
 ---
 
@@ -673,6 +679,7 @@ if ([self.reward isReady]) {
 | --- | --- | --- |
 | 创建 | `new TDInterstitial(Context, long)` | `initWithAdUnitId:` |
 | 加载 / 可展 | `loadAd()` / `isReady()` | `loadAd` / `isReady` |
+| 场景到达 | `entryAdScenario(sceneId)` → 上报 380 | `entryAdScenario:` |
 | 展示 | `showAd(Activity, sceneId)` | `showAdFrom:sceneId:` |
 | 当前广告 | `getAdInfo()` | `getAdInfo` |
 | 其它 | `setBidFloor` / `setCustomParams` / `clearCache` / `onDestroy` | 同左 |
@@ -715,7 +722,7 @@ ad.setAdListener(new TDInterstitialListener() {
     @Override public void onBiddingEnd(TDAdInfo info, TDError error) { }
 });
 ad.loadAd();
-if (ad.isReady()) ad.showAd(this, "your_scene");
+if (ad.entryAdScenario("your_scene")) ad.showAd(this, "your_scene");
 ```
 
 **iOS**
@@ -724,7 +731,7 @@ if (ad.isReady()) ad.showAd(this, "your_scene");
 self.interstitial = [[TDInterstitial alloc] initWithAdUnitId:YOUR_AD_UNIT_ID];
 [self.interstitial setAdListener:self];
 [self.interstitial loadAd];
-if ([self.interstitial isReady]) {
+if ([self.interstitial entryAdScenario:@"your_scene"]) {
     [self.interstitial showAdFrom:self sceneId:@"your_scene"];
 }
 ```
@@ -742,6 +749,7 @@ if ([self.interstitial isReady]) {
 - (void)onBiddingEnd:(TDAdInfo *)info error:(TDError *)error { }
 ```
 
+
 ---
 
 # 07 开屏广告
@@ -754,7 +762,7 @@ if ([self.interstitial isReady]) {
 - iOS：可用 `alpha=0` 占位，展示前设为 `1` 并 `layoutIfNeeded`。
 - 在 `onAdClosed`、`onAdShowFailed` 里收起开屏，再进首页。
 
-冷启动时配置可能还没拉下来。Init 成功后再 Load；不要在 Init 回调前抢请求。
+冷启动时配置可能还没拉下来。Init 成功后再 Load；不要在 Init 回调前抢请求。到达展示场景时调 `entryAdScenario`（上报 380），不要在 `isReady` 轮询里调。
 
 ---
 
@@ -767,6 +775,7 @@ if ([self.interstitial isReady]) {
 | 覆盖尺寸 | `setAdSize(w, h)` | `setAdSize:height:` |
 | 容器 | Show 时传入 | Load 前可 `setContainer:` |
 | 展示 | `showAd(Activity, ViewGroup, sceneId)` | `showAdFrom:container:sceneId:` |
+| 场景到达 | `entryAdScenario(sceneId)` → 上报 380 | `entryAdScenario:` |
 | 当前广告 | `getAdInfo()` | `getAdInfo` |
 | 其它 | `isReady` / `onDestroy` / `clearCache` | 同左 |
 
@@ -807,7 +816,7 @@ splash.setAdListener(new TDSplashListener() {
     @Override public void onBiddingEnd(TDAdInfo info, TDError error) { }
 });
 splash.loadAd();
-if (splash.isReady()) {
+if (splash.entryAdScenario("your_scene")) {
     splashOverlay.setVisibility(View.VISIBLE);
     splashOverlay.post(() -> splash.showAd(this, splashOverlay, "your_scene"));
 }
@@ -833,7 +842,7 @@ self.splash = [[TDSplash alloc] initWithAdUnitId:YOUR_AD_UNIT_ID];
 [self.splash setAdListener:self];
 [self.splash setContainer:self.splashOverlay];
 [self.splash loadAd];
-if ([self.splash isReady]) {
+if ([self.splash entryAdScenario:@"your_scene"]) {
     self.splashOverlay.alpha = 1;
     self.splashOverlay.userInteractionEnabled = YES;
     [self.view layoutIfNeeded];
@@ -842,6 +851,7 @@ if ([self.splash isReady]) {
 ```
 
 `onAdClosed` / `onAdShowFailed` 里移除 overlay 子 View，再 `alpha=0`，然后进首页。
+
 
 ---
 
@@ -853,7 +863,7 @@ if ([self.splash isReady]) {
 
 **JinDai Banner** 官方高为自适应。容器不要锁死 50dp，否则素材被压扁；建议 ≥200dp。
 
-`onAdClosed` 后请从容器移除 Banner（Android `removeAllViews`，iOS 去掉子 View）。SDK 不会替你拆容器。离开页面 `onDestroy`。
+`onAdClosed` 后请从容器移除 Banner（Android `removeAllViews`，iOS 去掉子 View）。SDK 不会替你拆容器。离开页面 `onDestroy`。到达展示场景时调 `entryAdScenario`（上报 380），不要在 `isReady` 轮询里调。
 
 AdGain 无 Banner API，该源会 `formatUnsupported`。
 
@@ -868,6 +878,7 @@ AdGain 无 Banner API，该源会 `formatUnsupported`。
 | 覆盖尺寸 | `setAdSize(widthPx, heightPx)` | `setAdSize:height:` |
 | 容器 | Show 时传入 | Load 前可 `setContainer:` |
 | 展示 | `showAd(Activity, ViewGroup, sceneId)` | `showAdFrom:container:sceneId:` |
+| 场景到达 | `entryAdScenario(sceneId)` → 上报 380 | `entryAdScenario:` |
 | 当前广告 | `getAdInfo()` | `getAdInfo` |
 | 其它 | `isReady` / `onDestroy` / `clearCache` | 同左 |
 
@@ -902,7 +913,7 @@ banner.setAdListener(new TDBannerListener() {
     @Override public void onBiddingEnd(TDAdInfo info, TDError error) { }
 });
 banner.loadAd();
-if (banner.isReady()) {
+if (banner.entryAdScenario("your_scene")) {
     banner.showAd(this, container, "your_scene");
 }
 ```
@@ -920,7 +931,7 @@ self.banner = [[TDBanner alloc] initWithAdUnitId:YOUR_AD_UNIT_ID];
 [self.banner setAdListener:self];
 [self.banner setContainer:self.adContainer];
 [self.banner loadAd];
-if ([self.banner isReady]) {
+if ([self.banner entryAdScenario:@"your_scene"]) {
     [self.banner showAdFrom:self container:self.adContainer sceneId:@"your_scene"];
 }
 ```
@@ -940,22 +951,23 @@ if ([self.banner isReady]) {
 - (void)onBiddingEnd:(TDAdInfo *)info error:(TDError *)error { }
 ```
 
+
 ---
 
 # 09 原生广告
 
-> 文档版本：1.1.5
+> 文档版本：1.1.6
 
 嵌在信息流中。容器宽撑满，高至少 250dp / 250pt。不设尺寸时按屏宽 × 250 请求。
 
-**SDK 不会在 Load 后自动 Show。** `onAdLoaded` 只带回 `renderType` 和素材。和激励一样，再调 Show。
+**SDK 不会在 Load 后自动 Show。** `onAdLoaded` 只带回 `renderType` 和素材。和激励一样，再调 Show。到达展示场景时调 `entryAdScenario`（上报 380），不要在 `isReady` 轮询里调。
 
 后台把该源配成模板或自渲染，须与三方广告位类型一致。客户端以 `info.renderType` 为准：
 
 | renderType | 值 | 您要做的 |
 | --- | --- | --- |
 | 模板 `EXPRESS` | `1` | 不要往容器塞自己的布局，直接 Show |
-| 自渲染 `SELF_RENDER` | `2` | Show **之前**用 `nativeMaterial` 拼 title / desc / cta / 主图，打上 TAG |
+| 自渲染 `SELF_RENDER` | `2` | Show **之前**用 `nativeMaterial` 按信息流卡片拼：图标+标题+「广告」标 / 主图 / CTA 按钮，打上 TAG |
 | 未知 | `-1` | 尚未 Load 或非原生 |
 
 自渲染可在 `onAdLoaded` 拼，也可紧挨 Show 前拼。官方 Demo 在点 Show 时拼，避免 Load 后容器里已有文案看起来像自动展示。空容器 Show 会失败（`1001`）。
@@ -988,6 +1000,7 @@ iOS 的 `UILabel` 默认不可点，必须 `userInteractionEnabled = YES`。`onA
 | 请求 | `loadAd()` | `loadAd` |
 | 覆盖尺寸 | `setAdSize(w, h)` | `setAdSize:height:` |
 | 展示 | `showAd(Activity, ViewGroup, sceneId)` | `showAdFrom:container:sceneId:` |
+| 场景到达 | `entryAdScenario(sceneId)` → 上报 380 | `entryAdScenario:` |
 | 模板展示 | `showAd(Activity, ViewGroup, layoutRes, sceneId)` | `showAdFrom:container:nibName:bundle:sceneId:` |
 | 当前广告 | `getAdInfo()` | `getAdInfo` |
 
@@ -1024,34 +1037,13 @@ nativeAd.loadAd();
 // 产品决定展示时：
 TDAdInfo info = pending[0];
 if (info != null && info.renderType == TDRenderType.SELF_RENDER) {
+    // 按信息流大图卡片拼：头（图标 + 标题 + 「广告」标 + 描述）→ 主图 → 底部 CTA 按钮。
+    // TAG 必须打上。完整样板见官方 Demo `DemoNativeAssemble`。
     TDNativeMaterial m = info.nativeMaterial;
     container.removeAllViews();
-    LinearLayout root = new LinearLayout(this);
-    root.setOrientation(LinearLayout.VERTICAL);
-    TextView title = new TextView(this);
-    title.setText(m == null || m.title == null ? "" : m.title);
-    title.setClickable(true);
-    title.setTag(TDNativeMaterial.TAG_TITLE);
-    TextView desc = new TextView(this);
-    desc.setText(m == null || m.desc == null ? "" : m.desc);
-    desc.setClickable(true);
-    desc.setTag(TDNativeMaterial.TAG_DESC);
-    TextView cta = new TextView(this);
-    cta.setText(m == null || m.cta == null || m.cta.isEmpty() ? "查看详情" : m.cta);
-    cta.setClickable(true);
-    cta.setTag(TDNativeMaterial.TAG_CTA);
-    root.addView(title);
-    root.addView(desc);
-    root.addView(cta);
-    if (m != null && m.imageUrl != null && !m.imageUrl.isEmpty()) {
-        ImageView img = new ImageView(this);
-        img.setClickable(true);
-        img.setTag(TDNativeMaterial.TAG_IMAGE);
-        root.addView(img);
-    }
-    container.addView(root);
+    // ... title TAG_TITLE / desc TAG_DESC / icon TAG_ICON / image TAG_IMAGE / cta TAG_CTA ...
 }
-if (nativeAd.isReady()) {
+if (nativeAd.entryAdScenario("your_scene")) {
     nativeAd.showAd(this, container, "your_scene");
 }
 ```
@@ -1065,7 +1057,7 @@ self.nativeAd = [[TDNative alloc] initWithAdUnitId:YOUR_AD_UNIT_ID];
 [self.nativeAd loadAd];
 
 // 产品决定展示时：先按 lastInfo 拼装（仅 SELF_RENDER），再 Show
-if ([self.nativeAd isReady]) {
+if ([self.nativeAd entryAdScenario:@"your_scene"]) {
     [self.nativeAd showAdFrom:self container:self.adContainer sceneId:@"your_scene"];
 }
 ```
@@ -1076,30 +1068,11 @@ if ([self.nativeAd isReady]) {
 }
 - (void)assembleIfNeeded:(TDAdInfo *)info {
     if (info.renderType != TDRenderTypeSelfRender) return;
+    // 按信息流大图卡片拼：头（图标 + 标题 + 「广告」标）→ 主图 → CTA 按钮。完整样板见 DemoNativeAssemble。
     TDNativeMaterial *m = info.nativeMaterial;
     for (UIView *sub in [self.adContainer.subviews copy]) [sub removeFromSuperview];
-    UILabel *title = [UILabel new];
-    title.text = m.title ?: @"";
-    title.userInteractionEnabled = YES;
-    title.accessibilityIdentifier = TDNativeMaterial.tagTitle;
-    UILabel *desc = [UILabel new];
-    desc.text = m.desc ?: @"";
-    desc.userInteractionEnabled = YES;
-    desc.accessibilityIdentifier = TDNativeMaterial.tagDesc;
-    UILabel *cta = [UILabel new];
-    cta.text = m.cta.length ? m.cta : @"查看详情";
-    cta.userInteractionEnabled = YES;
-    cta.accessibilityIdentifier = TDNativeMaterial.tagCta;
-    UIStackView *stack = [[UIStackView alloc] initWithArrangedSubviews:@[title, desc, cta]];
-    stack.axis = UILayoutConstraintAxisVertical;
-    if (m.imageUrl.length) {
-        UIImageView *img = [UIImageView new];
-        img.userInteractionEnabled = YES;
-        img.accessibilityIdentifier = TDNativeMaterial.tagImage;
-        [stack addArrangedSubview:img];
-    }
-    stack.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.adContainer addSubview:stack];
+    // title.accessibilityIdentifier = TDNativeMaterial.tagTitle;  // 其余 TAG 同 Android
+    // iOS 的 UILabel 必须 userInteractionEnabled = YES
 }
 - (void)onAdLoadFailed:(TDError *)error { }
 - (void)onAdIsLoading { }
@@ -1113,6 +1086,7 @@ if ([self.nativeAd isReady]) {
 - (void)onBiddingStart:(TDAdInfo *)info { }
 - (void)onBiddingEnd:(TDAdInfo *)info error:(TDError *)error { }
 ```
+
 
 ---
 
@@ -1208,11 +1182,12 @@ reward.setCustomParams(p);
 
 展示时可选，用于区分场景。若对接平台要求数字，请传 `"1001"` 这种纯数字串。
 
+
 ---
 
 # 11 回调与错误码
 
-> 文档版本：1.1.5
+> 文档版本：1.1.7
 
 ---
 
@@ -1254,14 +1229,16 @@ reward.setCustomParams(p);
 | 1020 | 三方 SDK 缺失 | 补上官方 SDK |
 | 1021 | 依赖缺失 | Android `td-ads-base` / `td-ads-sdk`；iOS `TDAdsBase` / `TDAdsSDK` |
 | 1022 | 广告源创建失败 | 核对后台配置与依赖 |
+| 1023 | 请求频次达限 | 本轮被频次拦住、没有填充（其它层即使是 ADN 失败，整轮也报 1023）。稍后 `loadAd`，不要立刻连点 |
 
 `TDError.toString()` 形如 `TDError{code=1005, msg=no fill, network=ltmb}`。
+
 
 ---
 
 # 12 测试验收
 
-> 文档版本：1.1.5
+> 文档版本：1.1.6
 
 对接完成后按本页自测。官方 Demo 仅用于对照，**不要把 Demo 的广告位 ID 写进正式包**。
 
@@ -1274,7 +1251,7 @@ reward.setCustomParams(p);
 | 项 | 通过标准 |
 | --- | --- |
 | Init | 主进程 / `didFinishLaunching` 调用一次；日志有初始化成功；空 AppId 收到 `onFailed`（1001），不闪退 |
-| 激励 | Load 成功 → `isReady` → Show → 播完 `onAdReward` → 关闭 |
+| 激励 | Load 成功 → `entryAdScenario` → Show → 播完 `onAdReward` → 关闭 |
 | 插屏 | 同上，无 Reward |
 | 开屏 | 全屏容器；`onAdClosed` / `onAdShowFailed` 后进首页 |
 | Banner | 顶/底展示完整；JinDai 容器 ≥200dp；关闭后从容器移除 |
@@ -1319,9 +1296,11 @@ Demo 行为约定：
 | --- | --- |
 | 一直无填充 | [04](#04-初始化与隐私) 四门与 OAID/IDFA；[01](#01-后台配置) 广告源 |
 | `1007` / adapter 缺失 | [02](#02-android-集成) / [03](#03-ios-集成) 是否加了对应模块 |
+| `1023` 频次达限 | 本轮被后台频次拦住（混有 ADN 失败时整轮仍是 1023）。稍后重试 `loadAd`，不要立刻连点 |
 | 原生点了没反应、没图 | [09](#09-原生广告) TAG 与主图 |
 | Load 后立刻看到文案 | 不要在 `onAdLoaded` 里拼装或 Show |
 | 开屏进不了首页 | 必须在 Closed / ShowFailed 里收起 overlay |
+
 
 ---
 
@@ -1409,6 +1388,7 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 
 **错误码在哪查？**  
 [11 回调与错误码](#11-回调与错误码)。
+
 
 ---
 
@@ -1538,11 +1518,3 @@ TDAdsSDK.initSdk(context, appId, new TDInitListener() { ... });
 | 关闭标识采集 | `setAuthUID(false)` 或禁报 `OAID` / `IDFA` |
 
 个性化开关 SDK **不落盘**，请您自己记住用户选择，每次启动重新设置。
-
----
-
-# 国内隐私合规使用说明
-
-# 国内隐私合规
-
-宿主请看对接文档里的 [隐私合规](./TD_SDK_对接文档/隐私合规.md)。

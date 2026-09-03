@@ -1,6 +1,6 @@
 # 03 iOS 集成
 
-> 文档版本：1.1.6 · SDK `1.1.2.7`
+> 文档版本：1.1.6 · SDK `1.1.2.8`
 
 先加 TD 核心，再按后台实际用到的平台加 **TD 模块 + 官方 SDK**。没接的不要加。只加 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -16,7 +16,7 @@
 | Xcode | 14 及以上 |
 | 接入 | CocoaPods，`use_frameworks! :linkage => :static` |
 | Other Linker Flags | **必须** `-ObjC`（保留 `$(inherited)`） |
-| 当前 SDK | `1.1.2.7` |
+| 当前 SDK | `1.1.2.8` |
 
 ---
 
@@ -29,8 +29,8 @@ platform :ios, '12.0'
 use_frameworks! :linkage => :static
 
 target 'YourApp' do
-  pod 'TDAdsBase', '1.1.2.7'
-  pod 'TDAdsSDK',  '1.1.2.7'
+  pod 'TDAdsBase', '1.1.2.8'
+  pod 'TDAdsSDK',  '1.1.2.8'
 end
 ```
 
@@ -43,7 +43,7 @@ end
 ### JinDai
 
 ```ruby
-pod 'TDAdsJDSDK', '1.1.2.7'
+pod 'TDAdsJDSDK', '1.1.2.8'
 pod 'JinDaiSDK', :subspecs => ['JinDaiSDK']
 ```
 
@@ -52,7 +52,7 @@ pod 'JinDaiSDK', :subspecs => ['JinDaiSDK']
 ### AdGain
 
 ```ruby
-pod 'TDAdsAdGain', '1.1.2.7'
+pod 'TDAdsAdGain', '1.1.2.8'
 pod 'AdGainSDK', '4.2.8.2'
 ```
 
@@ -63,7 +63,7 @@ Trunk 若尚未收录该版本，按 AdGain 官方仓库把 SDK 放到本地后 
 ### LiteMob
 
 ```ruby
-pod 'TDAdsLtmb', '1.1.2.7'
+pod 'TDAdsLtmb', '1.1.2.8'
 pod 'LitemobSDK', '~> 5.5'
 ```
 

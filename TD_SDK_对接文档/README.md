@@ -1,7 +1,7 @@
 # TD SDK 对接文档
 
 > 文档版本：**1.1.6**  
-> SDK 版本：Android / iOS **`1.1.2.7`**  
+> SDK 版本：Android / iOS **`1.1.2.8`**  
 > 网页版：https://tydeonj.github.io/td-sdk-docs/
 
 欢迎使用 TD 聚合 SDK。按下面顺序做即可接入激励、插屏、开屏、横幅、原生。
