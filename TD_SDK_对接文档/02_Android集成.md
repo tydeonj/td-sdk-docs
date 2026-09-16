@@ -2,7 +2,7 @@
 
 > 文档版本：1.1.6 · SDK `1.1.2.8`
 
-先加 TD 核心，再按后台实际用到的平台补仓库和依赖。没接的平台不要加。只加了 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
+推荐把 **TD 核心和全部广告源** 都加上（每个源都是 **TD 模块 + 官方 SDK**）。只加了 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
 对照工程：https://github.com/tydeonj/td-sdk-demo-android
 
@@ -29,15 +29,15 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://hub.litemob.com/api/v4/projects/2/packages/maven' }
+        // AdGain 私有仓按 AdGain 官方文档配置，不要把账号写进工程
     }
 }
 ```
 
-广告源自己的仓库见第 4 节，接了哪个再加哪个。
-
 ---
 
-## 3. TD 核心依赖（必加）
+## 3. 推荐依赖（核心 + 全部源）
 
 复制到 **app 模块** `dependencies`：
 
@@ -46,41 +46,16 @@ def tdVer = '1.1.2.8'
 
 implementation "com.tyedo:td-ads-base:${tdVer}"
 implementation "com.tyedo:td-ads-sdk:${tdVer}"
-```
 
----
-
-## 4. 按需接入广告源
-
-后台配了哪个平台，就加该平台的 **仓库 + TD 模块 + 官方 SDK**。三个都要有。
-
-### JinDai
-
-无需额外 Maven。把官方 `YDSDK-release.aar` 放到 `app/libs/`。
-
-```groovy
+// JinDai：官方 YDSDK-release.aar 放到 app/libs/
 implementation "com.tyedo:jdsdk_ads:${tdVer}"
 implementation files('libs/YDSDK-release.aar')
-```
 
-### AdGain
-
-仓库按 **AdGain 官方文档**配置（对方私有 Maven，账号向 AdGain 申请）。不要把账号密码写进工程或对外文档。
-
-```groovy
+// AdGain：对方仓库按 AdGain 官方文档配置，不要把账号写进工程
 implementation "com.tyedo:adgain_ads:${tdVer}"
 implementation 'com.adgain:adgain-sdk:4.1.5'
-```
 
-**JinDai、AdGain 没有 OAID 不出广告。** `setAuthUID` 默认关，用户同意后、**init 前**打开，见 [04](./04_初始化与隐私.md)。LiteMob / Sigmob / Mintegral 不依赖这一条。
-
-### LiteMob
-
-```groovy
-maven { url 'https://hub.litemob.com/api/v4/projects/2/packages/maven' }
-```
-
-```groovy
+// LiteMob
 implementation "com.tyedo:ltmb_ads:${tdVer}"
 implementation 'com.ltmb.ltsdk:core:2.9.5'
 implementation 'com.github.bumptech.glide:glide:4.13.0'
@@ -90,6 +65,26 @@ implementation 'androidx.cardview:cardview:1.0.0'
 ```
 
 工程里已有 Glide / Gson / OkHttp / CardView 可不再重复加。
+
+---
+
+## 4. 各源说明
+
+每个源都要有 **仓库（如需）+ TD 模块 + 官方 SDK**。推荐全部添加。
+
+### JinDai
+
+无需额外 Maven。把官方 `YDSDK-release.aar` 放到 `app/libs/`。
+
+### AdGain
+
+仓库按 **AdGain 官方文档**配置（对方私有 Maven，账号向 AdGain 申请）。不要把账号密码写进工程或对外文档。
+
+**JinDai、AdGain 没有 OAID 不出广告。** `setAuthUID` 默认关，用户同意后、**init 前**打开，见 [04](./04_初始化与隐私.md)。LiteMob / Sigmob / Mintegral 不依赖这一条。
+
+### LiteMob
+
+LiteMob 仓库已写在第 2 节。工程里已有 Glide / Gson / OkHttp / CardView 可不再重复加。
 
 ---
 
@@ -132,7 +127,7 @@ Android 13+ 若使用广告标识，按 Google 要求增加：
 }
 ```
 
-**接了哪个平台，再加哪一行**
+**推荐与依赖一并全部加上**
 
 ```text
 -keep public class com.td.ads.jdsdk.** { *; }
