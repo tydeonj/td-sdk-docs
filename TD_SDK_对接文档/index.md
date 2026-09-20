@@ -31,7 +31,7 @@ features:
 
 正式上线请使用后台为**您的应用**签发的 App ID、广告位 ID。正文示例一律写 `YOUR_APP_ID` / `YOUR_AD_UNIT_ID`。
 
-SDK **不会**在 Load 成功后自动 Show。原生自渲染要先拼布局再 Show。完整字段与合规披露见 [隐私合规](./隐私合规.md)。
+SDK **不会**在 Load 成功后自动 Show。原生自渲染要先拼布局再 Show。完整字段与合规披露见 [隐私合规](./隐私合规.md)。官方隐私政策（独立页面）：[TDAds SDK隐私合规指南](./privacy.md)。
 
 ## 推荐顺序
 

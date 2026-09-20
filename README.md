@@ -7,6 +7,8 @@
 
 正式上线请使用后台为**您的应用**签发的 App ID、广告位 ID。正文示例一律写 `YOUR_APP_ID` / `YOUR_AD_UNIT_ID`。
 
+TDAds SDK 隐私政策（独立页面）：https://gitee.com/tydeo/td-sdk-docs/blob/main/privacy.md
+
 隐私政策与字段禁报见 [隐私合规](#隐私合规)。
 
 在线阅读：https://tydeonj.github.io/td-sdk-docs/
@@ -1397,6 +1399,8 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 
 对标 T/TAF 188—2023。TD **不代弹**隐私窗，也不代弹 ATT。
 
+官方隐私政策（独立页面）：https://gitee.com/tydeo/td-sdk-docs/blob/main/privacy.md
+
 ---
 
 ## 1. 接入前必须做
@@ -1503,7 +1507,7 @@ TDAdsSDK.initSdk(context, appId, new TDInitListener() { ... });
 | 使用目的 | 广告聚合变现、监测归因、反作弊、填充策略 |
 | 处理个人信息 | 设备信息（OAID/IDFA 等可变标识、型号、OS、分辨率）、网络信息、广告行为；可选：位置、安装列表（受您的开关控制） |
 | 收集方式 | SDK 自行采集 / 宿主透传 |
-| 隐私政策链接 | （填写 TD SDK 隐私政策 URL） |
+| 隐私政策链接 | https://gitee.com/tydeo/td-sdk-docs/blob/main/privacy.md |
 | 第三方 | 按实际接入披露 JinDai / AdGain / LiteMob 等，并附各方隐私链接 |
 
 ---

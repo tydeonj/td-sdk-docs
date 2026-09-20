@@ -34,6 +34,7 @@ export default defineConfig({
       { text: 'iOS', link: '/03_iOS集成' },
       { text: '广告格式', link: '/05_激励视频' },
       { text: 'FAQ', link: '/13_FAQ' },
+      { text: '隐私政策', link: '/privacy' },
     ],
     sidebar: [
       {
@@ -69,6 +70,7 @@ export default defineConfig({
           { text: '测试验收', link: '/12_测试验收' },
           { text: 'FAQ', link: '/13_FAQ' },
           { text: '隐私合规', link: '/隐私合规' },
+          { text: '隐私政策', link: '/privacy' },
         ],
       },
     ],

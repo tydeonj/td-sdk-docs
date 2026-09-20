@@ -8,6 +8,8 @@
 
 正式上线请使用后台为**您的应用**签发的 App ID、广告位 ID。正文示例一律写 `YOUR_APP_ID` / `YOUR_AD_UNIT_ID`，不要把 Demo 数字写进正式包。
 
+TDAds SDK 隐私政策（独立页面）：https://gitee.com/tydeo/td-sdk-docs/blob/main/privacy.md
+
 隐私政策与字段禁报见 [隐私合规](./隐私合规.md)。
 
 ---
