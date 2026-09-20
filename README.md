@@ -7,7 +7,7 @@
 
 正式上线请使用后台为**您的应用**签发的 App ID、广告位 ID。正文示例一律写 `YOUR_APP_ID` / `YOUR_AD_UNIT_ID`。
 
-TDAds SDK 隐私政策（独立页面）：https://gitee.com/tydeo/td-sdk-docs/blob/main/privacy.md
+隐私政策：[TDAds SDK隐私合规指南](./privacy.md)
 
 隐私政策与字段禁报见 [隐私合规](#隐私合规)。
 
@@ -33,6 +33,7 @@ TDAds SDK 隐私政策（独立页面）：https://gitee.com/tydeo/td-sdk-docs/b
 | 回调字段、错误码 | [11 回调与错误码](#11-回调与错误码) |
 | 怎么验集成成功 | [12 测试验收](#12-测试验收) |
 | 常见问题 | [13 FAQ](#13-faq) |
+| 隐私政策 | [TDAds SDK隐私合规指南](./privacy.md) |
 
 Android 用 Maven，iOS 用 CocoaPods。
 
@@ -442,7 +443,7 @@ Build Settings → Other Linker Flags 增加 `-ObjC`。接部分官方 SDK 时�
 
 创建任何一个广告位对象前，必须先初始化。请先让用户同意您自己的《隐私政策》，再 Init。TD **不代弹**隐私窗，也不代弹 ATT。
 
-完整字段与合规披露见 [隐私合规](#隐私合规)。
+完整字段与合规披露见 [隐私合规](#隐私合规)。接入前请阅读 [TDAds SDK隐私合规指南](./privacy.md)。
 
 ---
 
@@ -1399,7 +1400,7 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 
 对标 T/TAF 188—2023。TD **不代弹**隐私窗，也不代弹 ATT。
 
-官方隐私政策（独立页面）：https://gitee.com/tydeo/td-sdk-docs/blob/main/privacy.md
+官方隐私政策：[TDAds SDK隐私合规指南](./privacy.md)
 
 ---
 
@@ -1507,7 +1508,7 @@ TDAdsSDK.initSdk(context, appId, new TDInitListener() { ... });
 | 使用目的 | 广告聚合变现、监测归因、反作弊、填充策略 |
 | 处理个人信息 | 设备信息（OAID/IDFA 等可变标识、型号、OS、分辨率）、网络信息、广告行为；可选：位置、安装列表（受您的开关控制） |
 | 收集方式 | SDK 自行采集 / 宿主透传 |
-| 隐私政策链接 | https://gitee.com/tydeo/td-sdk-docs/blob/main/privacy.md |
+| 隐私政策链接 | [TDAds SDK隐私合规指南](./privacy.md) |
 | 第三方 | 按实际接入披露 JinDai / AdGain / LiteMob 等，并附各方隐私链接 |
 
 ---

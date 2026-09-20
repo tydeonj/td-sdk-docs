@@ -8,7 +8,7 @@
 
 正式上线请使用后台为**您的应用**签发的 App ID、广告位 ID。正文示例一律写 `YOUR_APP_ID` / `YOUR_AD_UNIT_ID`，不要把 Demo 数字写进正式包。
 
-TDAds SDK 隐私政策（独立页面）：https://gitee.com/tydeo/td-sdk-docs/blob/main/privacy.md
+隐私政策：[TDAds SDK隐私合规指南](./privacy.md)
 
 隐私政策与字段禁报见 [隐私合规](./隐私合规.md)。
 
@@ -27,6 +27,7 @@ TDAds SDK 隐私政策（独立页面）：https://gitee.com/tydeo/td-sdk-docs/b
 | 回调字段、错误码 | [11 回调与错误码](./11_回调与错误码.md) |
 | 怎么验集成成功 | [12 测试验收](./12_测试验收.md) |
 | 常见问题 | [13 FAQ](./13_FAQ.md) |
+| 隐私政策 | [TDAds SDK隐私合规指南](./privacy.md) |
 
 Android 用 Maven，iOS 用 CocoaPods。代码示例可对照官方 Demo，正式工程不要抄 Demo 的广告位 ID。
 

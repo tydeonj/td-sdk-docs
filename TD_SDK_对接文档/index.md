@@ -14,6 +14,9 @@ hero:
     - theme: alt
       text: iOS 集成
       link: /03_iOS集成
+    - theme: alt
+      text: 隐私政策
+      link: /privacy
 features:
   - title: 后台配置
     details: 建应用、广告位、广告源和瀑布流。正式包只用您自己的 App ID / 广告位 ID。
