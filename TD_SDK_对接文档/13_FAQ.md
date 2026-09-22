@@ -65,7 +65,7 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 激励和插屏是不同模块。Android / iOS 都要单独加对应 TD 模块和三方 SDK。见 [02](./02_Android集成.md) / [03](./03_iOS集成.md)。
 
 **AdGain 没有 Banner？**  
-该平台无 Banner API，会 `formatUnsupported`。换源或不要给 Banner 位配 AdGain。
+iOS 已对接官方 Banner。Android 官方 SDK 仍无独立 Banner API，该源会 `formatUnsupported`；Android Banner 位不要配 AdGain。
 
 **iOS 能跑但编译仍有链接警告？**  
 核对 ATS、`-ObjC`、LiteMob 版本与 rpath。见 [03](./03_iOS集成.md)。

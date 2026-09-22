@@ -1,6 +1,6 @@
 # 03 iOS 集成
 
-> 文档版本：1.1.6 · SDK `1.1.2.10`
+> 文档版本：1.1.6 · SDK `1.1.2.11`
 
 推荐把 **TD 核心和全部广告源** 都加上（每个源都是 **TD 模块 + 官方 SDK**）。只加 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -16,7 +16,7 @@
 | Xcode | 14 及以上 |
 | 接入 | CocoaPods，`use_frameworks! :linkage => :static` |
 | Other Linker Flags | **必须** `-ObjC`（保留 `$(inherited)`） |
-| 当前 SDK | `1.1.2.10` |
+| 当前 SDK | `1.1.2.11` |
 
 ---
 
@@ -30,7 +30,7 @@ TD 模块走 CocoaPods Trunk（二进制在 Gitee）。对方官方 SDK 仍按�
 platform :ios, '12.0'
 use_frameworks! :linkage => :static
 
-ver = '1.1.2.10'
+ver = '1.1.2.11'
 
 target 'YourApp' do
   # TD 核心（两行必须同号）

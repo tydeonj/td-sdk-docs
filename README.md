@@ -1,7 +1,7 @@
 # TD SDK 对接文档
 
 > 文档版本：**1.1.6**  
-> SDK 版本：Android **`1.1.2.8`** · iOS **`1.1.2.10`**
+> SDK 版本：Android **`1.1.2.8`** · iOS **`1.1.2.11`**
 
 欢迎使用 TD 聚合 SDK。按下面顺序接入激励、插屏、开屏、横幅、原生。
 
@@ -307,7 +307,7 @@ Android 13+ 若使用广告标识，按 Google 要求增加：
 
 # 03 iOS 集成
 
-> 文档版本：1.1.6 · SDK `1.1.2.10`
+> 文档版本：1.1.6 · SDK `1.1.2.11`
 
 推荐把 **TD 核心和全部广告源** 都加上（每个源都是 **TD 模块 + 官方 SDK**）。只加 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -323,7 +323,7 @@ Android 13+ 若使用广告标识，按 Google 要求增加：
 | Xcode | 14 及以上 |
 | 接入 | CocoaPods，`use_frameworks! :linkage => :static` |
 | Other Linker Flags | **必须** `-ObjC`（保留 `$(inherited)`） |
-| 当前 SDK | `1.1.2.10` |
+| 当前 SDK | `1.1.2.11` |
 
 ---
 
@@ -337,7 +337,7 @@ TD 模块走 CocoaPods Trunk（二进制在 Gitee）。对方官方 SDK 仍按�
 platform :ios, '12.0'
 use_frameworks! :linkage => :static
 
-ver = '1.1.2.10'
+ver = '1.1.2.11'
 
 target 'YourApp' do
   # TD 核心（两行必须同号）
@@ -374,7 +374,7 @@ end
 
 Trunk 若尚未收录 `AdGainSDK` `4.2.8.2`，按 AdGain 官方仓库把 SDK 放到本地后 `:path` 引入（不要把账号写进文档）。Android 对方 SDK 版本跟 AdGain Android 官方，与 iOS 版本号可以不同。
 
-**JinDai、AdGain 没有 IDFA 不出广告。** 须 ATT 授权；`setAuthUID` 默认关，用户同意后、**init 前**打开，见 [04](#04-初始化与隐私)。
+**JinDai、AdGain 没有 IDFA 不出广告。** 须 ATT 授权；`setAuthUID` 默认关，用户同意后、**init 前**打开，见 [04](./04_初始化与隐私.md)。
 
 ### LiteMob
 
@@ -432,7 +432,7 @@ Build Settings → Other Linker Flags 增加 `-ObjC`。接部分官方 SDK 时�
 
 ## 6. 下一步
 
-[04 初始化与隐私](#04-初始化与隐私)（在 `application:didFinishLaunchingWithOptions:` 中、用户同意后再 Init）。
+[04 初始化与隐私](./04_初始化与隐私.md)（在 `application:didFinishLaunchingWithOptions:` 中、用户同意后再 Init）。
 
 
 ---
@@ -756,13 +756,18 @@ if ([self.interstitial entryAdScenario:@"your_scene"]) {
 
 # 07 开屏广告
 
-> 文档版本：1.1.5
+> 文档版本：1.1.6
 
-应用打开后展示 3–5 秒。请先完成 Init，再尽早 Load。容器必须接近全屏；过小会无法展示。
+应用打开后展示 3–5 秒。请先完成 Init，再尽早 Load。广告区必须接近全屏；过小会无法展示。
 
-- Android：容器用 `INVISIBLE` 占位，不要 `GONE`。展示前等一帧（`post()`）。
+推荐把开屏做成两段：**上面广告区 + 下面底部条**（logo / 应用名）。Android 把广告画进广告区，底部条是兄弟视图，会露出来。iOS 全屏源（JinDai / AdGain / LiteMob）会把底部条交给对方 SDK（JinDai 限高 25%，AdGain / LiteMob 限高 35%）；Sigmob / Mintegral 仍把广告画进广告区。也可以把矮底部条本身当作 `container` 传给 iOS 全屏源。
+
+公开 API 没有单独的 `setBottomView`。底部条大小就是你布局里那条的高度（建议 ≤ 屏高 20%，且不要超过对方上限）。iOS 须在 **Load 前** `setContainer:` 广告区，Show 时再传入同一广告区；LiteMob 在 Load 时就决定底部风格还是左上角 logo。没有底部条时，LiteMob 会取广告区上方的兄弟视图作为 `topLogoView`。
+
+- Android：广告区用 `INVISIBLE` 占位，不要 `GONE`。展示前等一帧（`post()`）。
 - iOS：可用 `alpha=0` 占位，展示前设为 `1` 并 `layoutIfNeeded`。
 - 在 `onAdClosed`、`onAdShowFailed` 里收起开屏，再进首页。
+- 打开 debug 后，iOS 全屏源会打 `splash bottom WxH`（或 LiteMob 无底栏时的 `splash topLogo WxH`）。看广告最下面的白条，不要看 Demo 列表页。
 
 冷启动时配置可能还没拉下来。Init 成功后再 Load；不要在 Init 回调前抢请求。到达展示场景时调 `entryAdScenario`（上报 380），不要在 `isReady` 轮询里调。
 
@@ -775,7 +780,7 @@ if ([self.interstitial entryAdScenario:@"your_scene"]) {
 | 创建 | `new TDSplash(Context, long)` | `initWithAdUnitId:` |
 | 请求 | `loadAd()`。不设尺寸时按整屏 | 同左 |
 | 覆盖尺寸 | `setAdSize(w, h)` | `setAdSize:height:` |
-| 容器 | Show 时传入 | Load 前可 `setContainer:` |
+| 容器 | Show 时传入**广告区** | Load 前可 `setContainer:`（广告区；底部条放其下方） |
 | 展示 | `showAd(Activity, ViewGroup, sceneId)` | `showAdFrom:container:sceneId:` |
 | 场景到达 | `entryAdScenario(sceneId)` → 上报 380 | `entryAdScenario:` |
 | 当前广告 | `getAdInfo()` | `getAdInfo` |
@@ -794,13 +799,24 @@ if ([self.interstitial entryAdScenario:@"your_scene"]) {
 **Android**
 
 ```xml
-<FrameLayout
+<LinearLayout
     android:id="@+id/splash_overlay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#FF000000"
-    android:clickable="true"
-    android:visibility="invisible" />
+    android:visibility="invisible">
+    <FrameLayout
+        android:id="@+id/splash_ad_area"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+    <FrameLayout
+        android:id="@+id/splash_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#FFFFFFFF" />
+</LinearLayout>
 ```
 
 ```java
@@ -820,7 +836,7 @@ splash.setAdListener(new TDSplashListener() {
 splash.loadAd();
 if (splash.entryAdScenario("your_scene")) {
     splashOverlay.setVisibility(View.VISIBLE);
-    splashOverlay.post(() -> splash.showAd(this, splashOverlay, "your_scene"));
+    splashOverlay.post(() -> splash.showAd(this, splashAdArea, "your_scene"));
 }
 ```
 
@@ -833,6 +849,7 @@ self.splashOverlay.userInteractionEnabled = NO;
 self.splashOverlay.backgroundColor = UIColor.blackColor;
 self.splashOverlay.translatesAutoresizingMaskIntoConstraints = NO;
 [self.view addSubview:self.splashOverlay];
+// splashAdArea 在上、splashBottomBar 在下（高度 ≤ 屏高 20%），约束略
 [NSLayoutConstraint activateConstraints:@[
     [self.splashOverlay.topAnchor constraintEqualToAnchor:self.view.topAnchor],
     [self.splashOverlay.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
@@ -842,17 +859,17 @@ self.splashOverlay.translatesAutoresizingMaskIntoConstraints = NO;
 
 self.splash = [[TDSplash alloc] initWithAdUnitId:YOUR_AD_UNIT_ID];
 [self.splash setAdListener:self];
-[self.splash setContainer:self.splashOverlay];
+[self.splash setContainer:self.splashAdArea];
 [self.splash loadAd];
 if ([self.splash entryAdScenario:@"your_scene"]) {
     self.splashOverlay.alpha = 1;
     self.splashOverlay.userInteractionEnabled = YES;
     [self.view layoutIfNeeded];
-    [self.splash showAdFrom:self container:self.splashOverlay sceneId:@"your_scene"];
+    [self.splash showAdFrom:self container:self.splashAdArea sceneId:@"your_scene"];
 }
 ```
 
-`onAdClosed` / `onAdShowFailed` 里移除 overlay 子 View，再 `alpha=0`，然后进首页。
+`onAdClosed` / `onAdShowFailed` 里清掉广告区子 View（不要拆底部条），再 `alpha=0`，然后进首页。
 
 
 ---
@@ -867,7 +884,7 @@ if ([self.splash entryAdScenario:@"your_scene"]) {
 
 `onAdClosed` 后请从容器移除 Banner（Android `removeAllViews`，iOS 去掉子 View）。SDK 不会替你拆容器。离开页面 `onDestroy`。到达展示场景时调 `entryAdScenario`（上报 380），不要在 `isReady` 轮询里调。
 
-AdGain 无 Banner API，该源会 `formatUnsupported`。
+AdGain：**iOS** 已对接官方 `AdGainBannerView`（按容器宽高比选 320×50 / 300×75 / 300×120，须有 `viewController`）。**Android** 官方 SDK 仍无独立 Banner API，该源会 `formatUnsupported`。Sigmob 双端暂不支持 Banner。
 
 ---
 
@@ -989,8 +1006,9 @@ iOS 的 `UILabel` 默认不可点，必须 `userInteractionEnabled = YES`。`onA
 | 按钮 | `td_cta` | `TDNativeMaterial.TAG_CTA` | `TDNativeMaterial.tagCta` |
 | 图标 | `td_icon` | `TAG_ICON` | `tagIcon` |
 | 主图 | `td_image` | `TAG_IMAGE` | `tagImage` |
+| 关闭 | `td_close` | `TAG_CLOSE` | `tagClose` |
 
-未打 TAG 时，容器及其直接子 View 作为可点区域。
+未打 TAG 时，容器及其直接子 View 作为可点区域。`td_close` 可选：iOS JinDai 会交给对方 `closableViews`；其它源可忽略。AdGain iOS 自渲染会把官方 `logoView` / `feedbackButton` 挂到容器角上，宿主不用自己拼。LiteMob iOS 会在注册前把容器从父视图摘下再挂回，宿主不用改调用顺序。
 
 ---
 
@@ -1315,7 +1333,7 @@ Demo 行为约定：
 ## 初始化
 
 **必须调 `setPrivacyUserAgree(true)` 才能出广告吗？**  
-不必。默认就是开。只在用户明确拒绝时调 `false`。详见 [04](#04-初始化与隐私)。
+不必。默认就是开。只在用户明确拒绝时调 `false`。详见 [04](./04_初始化与隐私.md)。
 
 **可以在子进程 Init 吗？**  
 Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
@@ -1337,7 +1355,7 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 ## 填充与设备标识
 
 **JinDai / AdGain 为什么没广告？**  
-这两家依赖 OAID（Android）或 IDFA（iOS）。四门未开、OAID 还没回写、或用户拒绝 ATT，都可能无填充。见 [04](#04-初始化与隐私)。
+这两家依赖 OAID（Android）或 IDFA（iOS）。四门未开、OAID 还没回写、或用户拒绝 ATT，都可能无填充。见 [04](./04_初始化与隐私.md)。
 
 **刚 Init 完就 Load，OAID 还是空的？**  
 采集是异步的。等标识回写后再 Load，不要在 Init 当帧立刻请求。
@@ -1360,7 +1378,7 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 点不动：Android 控件要 `clickable`；iOS `UILabel` 要 `userInteractionEnabled=YES`；并打上 TAG。
 
 **JinDai Banner 被压扁？**  
-官方高度自适应。容器不要锁 50dp，建议 ≥200dp。见 [08](#08-横幅广告banner)。
+官方高度自适应。容器不要锁 50dp，建议 ≥200dp。见 [08](./08_横幅广告.md)。
 
 **开屏容器必须全屏吗？**  
 是。过小会无法展示。Android 用 `INVISIBLE` 不要 `GONE`。
@@ -1370,13 +1388,13 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 ## 集成
 
 **插屏报 adapter 缺失，激励却正常？**  
-激励和插屏是不同模块。Android / iOS 都要单独加对应 TD 模块和三方 SDK。见 [02](#02-android-集成) / [03](#03-ios-集成)。
+激励和插屏是不同模块。Android / iOS 都要单独加对应 TD 模块和三方 SDK。见 [02](./02_Android集成.md) / [03](./03_iOS集成.md)。
 
 **AdGain 没有 Banner？**  
-该平台无 Banner API，会 `formatUnsupported`。换源或不要给 Banner 位配 AdGain。
+iOS 已对接官方 Banner。Android 官方 SDK 仍无独立 Banner API，该源会 `formatUnsupported`；Android Banner 位不要配 AdGain。
 
 **iOS 能跑但编译仍有链接警告？**  
-核对 ATS、`-ObjC`、LiteMob 版本与 rpath。见 [03](#03-ios-集成)。
+核对 ATS、`-ObjC`、LiteMob 版本与 rpath。见 [03](./03_iOS集成.md)。
 
 ---
 
@@ -1389,7 +1407,7 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 通常先 Reward 再 Close。以实际回调为准，发奖只写在 `onAdReward`。
 
 **错误码在哪查？**  
-[11 回调与错误码](#11-回调与错误码)。
+[11 回调与错误码](./11_回调与错误码.md)。
 
 
 ---
