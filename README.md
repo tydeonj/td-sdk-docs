@@ -576,12 +576,12 @@ Android 创建和展示建议传 `Activity`。
 | 创建（仅一次） | `new TDReward(Context, long)` | `[[TDReward alloc] initWithAdUnitId:]` |
 | 请求 | `loadAd()` | `loadAd` |
 | 可展 | `isReady()` | `isReady` |
-| 场景到达 | `entryAdScenario(sceneId)` → 上报 380 | `entryAdScenario:` |
+| 场景到达 | `entryAdScenario(sceneId)` | `entryAdScenario:` |
 | 展示 | `showAd(Activity, sceneId)` | `showAdFrom:sceneId:` |
 | 当前广告 | `getAdInfo()` | `getAdInfo` |
 | 底价 / 参数 / 释放 | `setBidFloor` / `setCustomParams` / `onDestroy` | 同左 |
 
-激励请传登录用户 ID（`setCustomParams` 的 `userId`，或 `setRewardVerify`）。部分平台不传会展示失败。`sceneId` 可选。到达展示场景时调 `entryAdScenario`（上报 380），不要在 `isReady` 轮询里调。
+激励请传登录用户 ID（`setCustomParams` 的 `userId`，或 `setRewardVerify`）。部分平台不传会展示失败。`sceneId` 可选。到达展示场景时调 `entryAdScenario`，不要在 `isReady` 轮询里调。
 
 ---
 
@@ -671,7 +671,7 @@ if ([self.reward entryAdScenario:@"your_scene"]) {
 
 > 文档版本：1.1.5
 
-全屏图片或视频，适合关卡切换、返回首页。提前加载，`isReady` 再 Show。不需要容器。注意事项与激励相同：失败不要立刻重试；离开页面 `onDestroy`。到达展示场景时调 `entryAdScenario`（上报 380），不要在 `isReady` 轮询里调。
+全屏图片或视频，适合关卡切换、返回首页。提前加载，`isReady` 再 Show。不需要容器。注意事项与激励相同：失败不要立刻重试；离开页面 `onDestroy`。到达展示场景时调 `entryAdScenario`，不要在 `isReady` 轮询里调。
 
 ---
 
@@ -681,7 +681,7 @@ if ([self.reward entryAdScenario:@"your_scene"]) {
 | --- | --- | --- |
 | 创建 | `new TDInterstitial(Context, long)` | `initWithAdUnitId:` |
 | 加载 / 可展 | `loadAd()` / `isReady()` | `loadAd` / `isReady` |
-| 场景到达 | `entryAdScenario(sceneId)` → 上报 380 | `entryAdScenario:` |
+| 场景到达 | `entryAdScenario(sceneId)` | `entryAdScenario:` |
 | 展示 | `showAd(Activity, sceneId)` | `showAdFrom:sceneId:` |
 | 当前广告 | `getAdInfo()` | `getAdInfo` |
 | 其它 | `setBidFloor` / `setCustomParams` / `clearCache` / `onDestroy` | 同左 |
@@ -769,7 +769,7 @@ if ([self.interstitial entryAdScenario:@"your_scene"]) {
 - 在 `onAdClosed`、`onAdShowFailed` 里收起开屏，再进首页。
 - 打开 debug 后，iOS 全屏源会打 `splash bottom WxH`（或 LiteMob 无底栏时的 `splash topLogo WxH`）。看广告最下面的白条，不要看 Demo 列表页。
 
-冷启动时配置可能还没拉下来。Init 成功后再 Load；不要在 Init 回调前抢请求。到达展示场景时调 `entryAdScenario`（上报 380），不要在 `isReady` 轮询里调。
+冷启动时配置可能还没拉下来。Init 成功后再 Load；不要在 Init 回调前抢请求。到达展示场景时调 `entryAdScenario`，不要在 `isReady` 轮询里调。
 
 ---
 
@@ -782,7 +782,7 @@ if ([self.interstitial entryAdScenario:@"your_scene"]) {
 | 覆盖尺寸 | `setAdSize(w, h)` | `setAdSize:height:` |
 | 容器 | Show 时传入**广告区** | Load 前可 `setContainer:`（广告区；底部条放其下方） |
 | 展示 | `showAd(Activity, ViewGroup, sceneId)` | `showAdFrom:container:sceneId:` |
-| 场景到达 | `entryAdScenario(sceneId)` → 上报 380 | `entryAdScenario:` |
+| 场景到达 | `entryAdScenario(sceneId)` | `entryAdScenario:` |
 | 当前广告 | `getAdInfo()` | `getAdInfo` |
 | 其它 | `isReady` / `onDestroy` / `clearCache` | 同左 |
 
@@ -882,7 +882,7 @@ if ([self.splash entryAdScenario:@"your_scene"]) {
 
 **JinDai Banner** 官方高为自适应。容器不要锁死 50dp，否则素材被压扁；建议 ≥200dp。
 
-`onAdClosed` 后请从容器移除 Banner（Android `removeAllViews`，iOS 去掉子 View）。SDK 不会替你拆容器。离开页面 `onDestroy`。到达展示场景时调 `entryAdScenario`（上报 380），不要在 `isReady` 轮询里调。
+`onAdClosed` 后请从容器移除 Banner（Android `removeAllViews`，iOS 去掉子 View）。SDK 不会替你拆容器。离开页面 `onDestroy`。到达展示场景时调 `entryAdScenario`，不要在 `isReady` 轮询里调。
 
 AdGain：**iOS** 已对接官方 `AdGainBannerView`（按容器宽高比选 320×50 / 300×75 / 300×120，须有 `viewController`）。**Android** 官方 SDK 仍无独立 Banner API，该源会 `formatUnsupported`。Sigmob 双端暂不支持 Banner。
 
@@ -897,7 +897,7 @@ AdGain：**iOS** 已对接官方 `AdGainBannerView`（按容器宽高比选 320�
 | 覆盖尺寸 | `setAdSize(widthPx, heightPx)` | `setAdSize:height:` |
 | 容器 | Show 时传入 | Load 前可 `setContainer:` |
 | 展示 | `showAd(Activity, ViewGroup, sceneId)` | `showAdFrom:container:sceneId:` |
-| 场景到达 | `entryAdScenario(sceneId)` → 上报 380 | `entryAdScenario:` |
+| 场景到达 | `entryAdScenario(sceneId)` | `entryAdScenario:` |
 | 当前广告 | `getAdInfo()` | `getAdInfo` |
 | 其它 | `isReady` / `onDestroy` / `clearCache` | 同左 |
 
@@ -979,7 +979,7 @@ if ([self.banner entryAdScenario:@"your_scene"]) {
 
 嵌在信息流中。容器宽撑满，高至少 250dp / 250pt。不设尺寸时按屏宽 × 250 请求。
 
-**SDK 不会在 Load 后自动 Show。** `onAdLoaded` 只带回 `renderType` 和素材。和激励一样，再调 Show。到达展示场景时调 `entryAdScenario`（上报 380），不要在 `isReady` 轮询里调。
+**SDK 不会在 Load 后自动 Show。** `onAdLoaded` 只带回 `renderType` 和素材。和激励一样，再调 Show。到达展示场景时调 `entryAdScenario`，不要在 `isReady` 轮询里调。
 
 后台把该源配成模板或自渲染，须与三方广告位类型一致。客户端以 `info.renderType` 为准：
 
@@ -1020,7 +1020,7 @@ iOS 的 `UILabel` 默认不可点，必须 `userInteractionEnabled = YES`。`onA
 | 请求 | `loadAd()` | `loadAd` |
 | 覆盖尺寸 | `setAdSize(w, h)` | `setAdSize:height:` |
 | 展示 | `showAd(Activity, ViewGroup, sceneId)` | `showAdFrom:container:sceneId:` |
-| 场景到达 | `entryAdScenario(sceneId)` → 上报 380 | `entryAdScenario:` |
+| 场景到达 | `entryAdScenario(sceneId)` | `entryAdScenario:` |
 | 模板展示 | `showAd(Activity, ViewGroup, layoutRes, sceneId)` | `showAdFrom:container:nibName:bundle:sceneId:` |
 | 当前广告 | `getAdInfo()` | `getAdInfo` |
 

@@ -82,7 +82,7 @@ SDK **不会**在 Load 成功后自动 Show。原生自渲染要先拼布局再 
 | 4 | `setAdListener` | `setAdListener:` |
 | 5 | 可选尺寸 / `userId` 等 | 同左 |
 | 6 | `loadAd` | `loadAd` |
-| 7 | 到达展示场景时 `entryAdScenario(sceneId)`（上报 380），不要在 `isReady` 轮询里调 | 同左 `entryAdScenario:` |
+| 7 | 到达展示场景时 `entryAdScenario(sceneId)`，不要在 `isReady` 轮询里调 | 同左 `entryAdScenario:` |
 | 8 | 返回 true 再 `showAd` | 再 `showAdFrom:…` |
 | 9 | 离开页面 `onDestroy` | `onDestroy` |
 
