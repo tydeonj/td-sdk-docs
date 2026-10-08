@@ -159,7 +159,7 @@ SDK **不会**在 Load 成功后自动 Show。原生自渲染要先拼布局再 
 
 # 02 Android 集成
 
-> 文档版本：1.1.6 · SDK `1.1.2.8`
+> 文档版本：1.1.7 · SDK `1.1.2.8`
 
 推荐把 **TD 核心和全部广告源** 都加上（每个源都是 **TD 模块 + 官方 SDK**）。只加了 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -206,7 +206,7 @@ def tdVer = '1.1.2.8'
 implementation "com.tyedo:td-ads-base:${tdVer}"
 implementation "com.tyedo:td-ads-sdk:${tdVer}"
 
-// JinDai：官方 YDSDK-release.aar 放到 app/libs/
+// JinDai：下载 YDSDK-release.aar 放到 app/libs/（见下方下载）
 implementation "com.tyedo:jdsdk_ads:${tdVer}"
 implementation files('libs/YDSDK-release.aar')
 
@@ -233,7 +233,10 @@ implementation 'androidx.cardview:cardview:1.0.0'
 
 ### JinDai
 
-无需额外 Maven。把官方 `YDSDK-release.aar` 放到 `app/libs/`。
+无需额外 Maven。下载官方 `YDSDK-release.aar`，放到 `app/libs/`：
+
+- [Gitee 下载](./TD_SDK_对接文档/downloads/YDSDK-release.aar)
+- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/YDSDK-release.aar)
 
 ### AdGain
 
@@ -1386,6 +1389,9 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 ---
 
 ## 集成
+
+**JinDai 的 `YDSDK-release.aar` 从哪下？**  
+[02 Android 集成](#02-android-集成) JinDai 一节有下载地址。放到 `app/libs/` 后按该页依赖接入。
 
 **插屏报 adapter 缺失，激励却正常？**  
 激励和插屏是不同模块。Android / iOS 都要单独加对应 TD 模块和三方 SDK。见 [02](./02_Android集成.md) / [03](./03_iOS集成.md)。

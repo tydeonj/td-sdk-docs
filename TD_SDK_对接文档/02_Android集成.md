@@ -1,6 +1,6 @@
 # 02 Android 集成
 
-> 文档版本：1.1.6 · SDK `1.1.2.8`
+> 文档版本：1.1.7 · SDK `1.1.2.8`
 
 推荐把 **TD 核心和全部广告源** 都加上（每个源都是 **TD 模块 + 官方 SDK**）。只加了 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -47,7 +47,7 @@ def tdVer = '1.1.2.8'
 implementation "com.tyedo:td-ads-base:${tdVer}"
 implementation "com.tyedo:td-ads-sdk:${tdVer}"
 
-// JinDai：官方 YDSDK-release.aar 放到 app/libs/
+// JinDai：下载 YDSDK-release.aar 放到 app/libs/（见下方下载）
 implementation "com.tyedo:jdsdk_ads:${tdVer}"
 implementation files('libs/YDSDK-release.aar')
 
@@ -74,7 +74,10 @@ implementation 'androidx.cardview:cardview:1.0.0'
 
 ### JinDai
 
-无需额外 Maven。把官方 `YDSDK-release.aar` 放到 `app/libs/`。
+无需额外 Maven。下载官方 `YDSDK-release.aar`，放到 `app/libs/`：
+
+- [Gitee 下载](https://gitee.com/tydeo/td-sdk-docs/raw/main/TD_SDK_对接文档/downloads/YDSDK-release.aar)
+- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/YDSDK-release.aar)
 
 ### AdGain
 
