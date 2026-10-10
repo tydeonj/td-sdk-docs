@@ -189,10 +189,11 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://hub.litemob.com/api/v4/projects/2/packages/maven' }
-        // AdGain 私有仓按 AdGain 官方文档配置，不要把账号写进工程
     }
 }
 ```
+
+走下面的本地全量包时，不需要 LiteMob 这行仓库。
 
 ---
 
@@ -210,9 +211,9 @@ implementation "com.tyedo:td-ads-sdk:${tdVer}"
 implementation "com.tyedo:jdsdk_ads:${tdVer}"
 implementation files('libs/YDSDK-release.aar')
 
-// AdGain：对方仓库按 AdGain 官方文档配置，不要把账号写进工程
+// AdGain：下载 adgain-sdk-4.2.8.aar 放到 app/libs/（见下方下载）
 implementation "com.tyedo:adgain_ads:${tdVer}"
-implementation 'com.adgain:adgain-sdk:4.1.5'
+implementation files('libs/adgain-sdk-4.2.8.aar')
 
 // LiteMob
 implementation "com.tyedo:ltmb_ads:${tdVer}"
@@ -224,6 +225,58 @@ implementation 'androidx.cardview:cardview:1.0.0'
 ```
 
 工程里已有 Glide / Gson / OkHttp / CardView 可不再重复加。
+
+---
+
+## 本地全量包集成与下载
+
+不走 TD 的 Maven、也不走各源仓库时用这一包。里面是 TD SDK `1.1.2.8`，以及当前文档接入的全部广告源官方 AAR：JinDai、AdGain、LiteMob（含 LiteMob 官方声明的依赖 AAR）。解压后全部放到 `app/libs/`。该目录不要再放本包以外的 AAR，否则下面的 `fileTree` 会一并编进去。
+
+- [Gitee 下载](./TD_SDK_对接文档/downloads/td-sdk-android-1.1.2.8-full.zip)
+- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/td-sdk-android-1.1.2.8-full.zip)
+
+项目级仓库只留 `google()`、`mavenCentral()`。app 模块：
+
+```groovy
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
+
+    // 不在全量包里，仍从 Maven Central 拉
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+}
+```
+
+工程里已有 Glide / Gson / OkHttp / CardView 可不再重复加。混淆仍用第 6 节。
+
+| 文件 | 说明 |
+| --- | --- |
+| `td-ads-base-1.1.2.8.aar` | TD 核心 |
+| `td-ads-sdk-1.1.2.8.aar` | TD 对外 API |
+| `jdsdk_ads-1.1.2.8.aar` | JinDai 桥 |
+| `adgain_ads-1.1.2.8.aar` | AdGain 桥 |
+| `ltmb_ads-1.1.2.8.aar` | LiteMob 桥 |
+| `YDSDK-release.aar` | JinDai 官方 SDK |
+| `adgain-sdk-4.2.8.aar` | AdGain 官方 SDK。4.2.8 已有 Banner API，当前聚合桥仍未对接，该源 Banner 会 `formatUnsupported` |
+| `litemob-core-2.9.5.aar` | LiteMob 官方 SDK |
+| `litemob-log-writer-1.0.0.aar` | LiteMob 官方依赖 |
+| `litemob-device-info-2.1.3.aar` | LiteMob 官方依赖 |
+| `litemob-adapter-gromore-2.2.0.aar` | LiteMob 官方依赖 |
+| `litemob-adapter-tobid-2.1.9.aar` | LiteMob 官方依赖 |
+| `litemob-adapter-topon-2.1.8.aar` | LiteMob 官方依赖 |
+| `litemob-adapter-beizi-2.1.6.aar` | LiteMob 官方依赖 |
+| `litemob-core-sdk-libs-1-2.4.7.3.aar` | LiteMob 官方依赖 |
+| `litemob-core-sdk-libs-2-4.2.7.3.aar` | LiteMob 官方依赖 |
+| `litemob-core-sdk-libs-3-4.2.4.2.aar` | LiteMob 官方依赖 |
+| `litemob-core-sdk-libs-4-3.0.6.1.aar` | LiteMob 官方依赖 |
+| `litemob-core-sdk-libs-6-2.9.70.aar` | LiteMob 官方依赖 |
+| `litemob-core-sdk-libs-7-6.5.68.9.aar` | LiteMob 官方依赖 |
+| `litemob-core-sdk-libs-8-2.2.6.2.aar` | LiteMob 官方依赖 |
+| `litemob-core-sdk-libs-9-4.2.56.aar` | LiteMob 官方依赖 |
+| `litemob-core-sdk-libs-10-1.0.99.12.aar` | LiteMob 官方依赖 |
+| `litemob-core-sdk-libs-11-1.9.6.aar` | LiteMob 官方依赖 |
 
 ---
 
@@ -240,7 +293,12 @@ implementation 'androidx.cardview:cardview:1.0.0'
 
 ### AdGain
 
-仓库按 **AdGain 官方文档**配置（对方私有 Maven，账号向 AdGain 申请）。不要把账号密码写进工程或对外文档。
+无需额外 Maven。下载官方 `adgain-sdk-4.2.8.aar`，放到 `app/libs/`：
+
+- [Gitee 下载](./TD_SDK_对接文档/downloads/adgain-sdk-4.2.8.aar)
+- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/adgain-sdk-4.2.8.aar)
+
+4.2.8 已有 Banner API，当前聚合桥仍未对接，该源 Banner 会 `formatUnsupported`。
 
 **JinDai、AdGain 没有 OAID 不出广告。** `setAuthUID` 默认关，用户同意后、**init 前**打开，见 [04](#04-初始化与隐私)。LiteMob / Sigmob / Mintegral 不依赖这一条。
 
@@ -887,7 +945,7 @@ if ([self.splash entryAdScenario:@"your_scene"]) {
 
 `onAdClosed` 后请从容器移除 Banner（Android `removeAllViews`，iOS 去掉子 View）。SDK 不会替你拆容器。离开页面 `onDestroy`。到达展示场景时调 `entryAdScenario`，不要在 `isReady` 轮询里调。
 
-AdGain：**iOS** 已对接官方 `AdGainBannerView`（按容器宽高比选 320×50 / 300×75 / 300×120，须有 `viewController`）。**Android** 官方 SDK 仍无独立 Banner API，该源会 `formatUnsupported`。Sigmob 双端暂不支持 Banner。
+AdGain：**iOS** 已对接官方 `AdGainBannerView`（按容器宽高比选 320×50 / 300×75 / 300×120，须有 `viewController`）。**Android** `adgain-sdk-4.2.8` 已有 `BannerAd`，当前聚合桥仍未对接，该源会 `formatUnsupported`。Sigmob 双端暂不支持 Banner。
 
 ---
 
@@ -1393,11 +1451,17 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 **JinDai 的 `YDSDK-release.aar` 从哪下？**  
 [02 Android 集成](#02-android-集成) JinDai 一节有下载地址。放到 `app/libs/` 后按该页依赖接入。
 
+**AdGain 的 `adgain-sdk-4.2.8.aar` 从哪下？**  
+[02 Android 集成](#02-android-集成) AdGain 一节有下载地址。放到 `app/libs/` 后按该页依赖接入。
+
+**本地全量包从哪下？**  
+[02 Android 集成](#02-android-集成)「本地全量包集成与下载」。压缩包里是 TD SDK `1.1.2.8` 和 JinDai、AdGain、LiteMob 的官方 AAR。解压到 `app/libs/` 后按该节依赖接入。
+
 **插屏报 adapter 缺失，激励却正常？**  
 激励和插屏是不同模块。Android / iOS 都要单独加对应 TD 模块和三方 SDK。见 [02](./02_Android集成.md) / [03](./03_iOS集成.md)。
 
 **AdGain 没有 Banner？**  
-iOS 已对接官方 Banner。Android 官方 SDK 仍无独立 Banner API，该源会 `formatUnsupported`；Android Banner 位不要配 AdGain。
+iOS 已对接官方 Banner。Android `adgain-sdk-4.2.8` 已有 `BannerAd`，当前聚合桥仍未对接，该源会 `formatUnsupported`；Android Banner 位不要配 AdGain。
 
 **iOS 能跑但编译仍有链接警告？**  
 核对 ATS、`-ObjC`、LiteMob 版本与 rpath。见 [03](./03_iOS集成.md)。
