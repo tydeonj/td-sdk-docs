@@ -34,7 +34,7 @@ allprojects {
 }
 ```
 
-走下面的本地全量包时，不需要 LiteMob 这行仓库。
+本地全量包仍保留这一行。LiteMob 只换官方 `core` 这一个包，它的传递依赖继续由该仓库解析。
 
 ---
 
@@ -71,18 +71,28 @@ implementation 'androidx.cardview:cardview:1.0.0'
 
 ## 本地全量包集成与下载
 
-不走 TD 的 Maven、也不走各源仓库时用这一包。里面是 TD SDK `1.1.2.8`，以及当前文档接入的全部广告源官方 AAR：JinDai、AdGain、LiteMob（含 LiteMob 官方声明的依赖 AAR）。解压后全部放到 `app/libs/`。该目录不要再放本包以外的 AAR，否则下面的 `fileTree` 会一并编进去。
+这是第 3 节的本地替换：每个 TD 模块、每个源的官方 SDK 各一个 AAR。解压后放到 `app/libs/`。Glide / Gson / OkHttp / CardView 仍走 Maven Central。LiteMob 只放官方 `core` 这一个包。
 
 - [Gitee 下载](https://gitee.com/tydeo/td-sdk-docs/raw/main/TD_SDK_对接文档/downloads/td-sdk-android-1.1.2.8-full.zip)
 - [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/td-sdk-android-1.1.2.8-full.zip)
 
-项目级仓库只留 `google()`、`mavenCentral()`。app 模块：
+项目级仓库保持第 2 节。app 模块把第 3 节改成：
 
 ```groovy
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.aar'])
+    implementation files('libs/td-ads-base-1.1.2.8.aar')
+    implementation files('libs/td-ads-sdk-1.1.2.8.aar')
 
-    // 不在全量包里，仍从 Maven Central 拉
+    implementation files('libs/jdsdk_ads-1.1.2.8.aar')
+    implementation files('libs/YDSDK-release.aar')
+
+    implementation files('libs/adgain_ads-1.1.2.8.aar')
+    implementation files('libs/adgain-sdk-4.2.8.aar')
+
+    implementation files('libs/ltmb_ads-1.1.2.8.aar')
+    // 与包内 litemob-core-2.9.5.aar 是同一个包。继续写坐标，传递依赖由第 2 节仓库解析
+    implementation 'com.ltmb.ltsdk:core:2.9.5'
+
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
@@ -90,7 +100,7 @@ dependencies {
 }
 ```
 
-工程里已有 Glide / Gson / OkHttp / CardView 可不再重复加。混淆仍用第 6 节。
+工程里已有 Glide / Gson / OkHttp / CardView 可不再重复加。混淆仍用第 6 节。`litemob-core-2.9.5.aar` 不要改成 `files()`，否则传递依赖不会进来。
 
 | 文件 | 说明 |
 | --- | --- |
@@ -101,23 +111,7 @@ dependencies {
 | `ltmb_ads-1.1.2.8.aar` | LiteMob 桥 |
 | `YDSDK-release.aar` | JinDai 官方 SDK |
 | `adgain-sdk-4.2.8.aar` | AdGain 官方 SDK。4.2.8 已有 Banner API，当前聚合桥仍未对接，该源 Banner 会 `formatUnsupported` |
-| `litemob-core-2.9.5.aar` | LiteMob 官方 SDK |
-| `litemob-log-writer-1.0.0.aar` | LiteMob 官方依赖 |
-| `litemob-device-info-2.1.3.aar` | LiteMob 官方依赖 |
-| `litemob-adapter-gromore-2.2.0.aar` | LiteMob 官方依赖 |
-| `litemob-adapter-tobid-2.1.9.aar` | LiteMob 官方依赖 |
-| `litemob-adapter-topon-2.1.8.aar` | LiteMob 官方依赖 |
-| `litemob-adapter-beizi-2.1.6.aar` | LiteMob 官方依赖 |
-| `litemob-core-sdk-libs-1-2.4.7.3.aar` | LiteMob 官方依赖 |
-| `litemob-core-sdk-libs-2-4.2.7.3.aar` | LiteMob 官方依赖 |
-| `litemob-core-sdk-libs-3-4.2.4.2.aar` | LiteMob 官方依赖 |
-| `litemob-core-sdk-libs-4-3.0.6.1.aar` | LiteMob 官方依赖 |
-| `litemob-core-sdk-libs-6-2.9.70.aar` | LiteMob 官方依赖 |
-| `litemob-core-sdk-libs-7-6.5.68.9.aar` | LiteMob 官方依赖 |
-| `litemob-core-sdk-libs-8-2.2.6.2.aar` | LiteMob 官方依赖 |
-| `litemob-core-sdk-libs-9-4.2.56.aar` | LiteMob 官方依赖 |
-| `litemob-core-sdk-libs-10-1.0.99.12.aar` | LiteMob 官方依赖 |
-| `litemob-core-sdk-libs-11-1.9.6.aar` | LiteMob 官方依赖 |
+| `litemob-core-2.9.5.aar` | LiteMob 官方 SDK，对应 `com.ltmb.ltsdk:core:2.9.5` |
 
 ---
 
