@@ -1,6 +1,6 @@
 # 02 Android 集成
 
-> 文档版本：1.1.7 · SDK `1.1.2.8`
+> 文档版本：1.1.7 · SDK `1.1.2.10`
 
 推荐把 **TD 核心和全部广告源** 都加上（每个源都是 **TD 模块 + 官方 SDK**）。只加了 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -16,7 +16,7 @@
 | minSdk | 16 |
 | Java | 8 及以上 |
 | 初始化进程 | **仅主进程**（否则 `1002`） |
-| 当前 SDK | `1.1.2.8` |
+| 当前 SDK | `1.1.2.10` |
 
 ---
 
@@ -43,7 +43,7 @@ allprojects {
 复制到 **app 模块** `dependencies`：
 
 ```groovy
-def tdVer = '1.1.2.8'
+def tdVer = '1.1.2.10'
 
 implementation "com.tyedo:td-ads-base:${tdVer}"
 implementation "com.tyedo:td-ads-sdk:${tdVer}"
@@ -73,23 +73,23 @@ implementation 'androidx.cardview:cardview:1.0.0'
 
 这是第 3 节的本地替换：每个 TD 模块、每个源的官方 SDK 各一个 AAR。解压后放到 `app/libs/`。Glide / Gson / OkHttp / CardView 仍走 Maven Central。LiteMob 只放官方 `core` 这一个包。
 
-- [Gitee 下载](https://gitee.com/tydeo/td-sdk-docs/raw/main/TD_SDK_对接文档/downloads/td-sdk-android-1.1.2.8-full.zip)
-- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/td-sdk-android-1.1.2.8-full.zip)
+- [Gitee 下载](https://gitee.com/tydeo/td-sdk-docs/raw/main/TD_SDK_对接文档/downloads/td-sdk-android-1.1.2.10-full.zip)
+- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/td-sdk-android-1.1.2.10-full.zip)
 
 项目级仓库保持第 2 节。app 模块把第 3 节改成：
 
 ```groovy
 dependencies {
-    implementation files('libs/td-ads-base-1.1.2.8.aar')
-    implementation files('libs/td-ads-sdk-1.1.2.8.aar')
+    implementation files('libs/td-ads-base-1.1.2.10.aar')
+    implementation files('libs/td-ads-sdk-1.1.2.10.aar')
 
-    implementation files('libs/jdsdk_ads-1.1.2.8.aar')
+    implementation files('libs/jdsdk_ads-1.1.2.10.aar')
     implementation files('libs/YDSDK-release.aar')
 
-    implementation files('libs/adgain_ads-1.1.2.8.aar')
+    implementation files('libs/adgain_ads-1.1.2.10.aar')
     implementation files('libs/adgain-sdk-4.2.8.aar')
 
-    implementation files('libs/ltmb_ads-1.1.2.8.aar')
+    implementation files('libs/ltmb_ads-1.1.2.10.aar')
     // 与包内 litemob-core-2.9.5.aar 是同一个包。继续写坐标，传递依赖由第 2 节仓库解析
     implementation 'com.ltmb.ltsdk:core:2.9.5'
 
@@ -104,11 +104,11 @@ dependencies {
 
 | 文件 | 说明 |
 | --- | --- |
-| `td-ads-base-1.1.2.8.aar` | TD 核心 |
-| `td-ads-sdk-1.1.2.8.aar` | TD 对外 API |
-| `jdsdk_ads-1.1.2.8.aar` | JinDai 桥 |
-| `adgain_ads-1.1.2.8.aar` | AdGain 桥 |
-| `ltmb_ads-1.1.2.8.aar` | LiteMob 桥 |
+| `td-ads-base-1.1.2.10.aar` | TD 核心 |
+| `td-ads-sdk-1.1.2.10.aar` | TD 对外 API |
+| `jdsdk_ads-1.1.2.10.aar` | JinDai 桥 |
+| `adgain_ads-1.1.2.10.aar` | AdGain 桥 |
+| `ltmb_ads-1.1.2.10.aar` | LiteMob 桥 |
 | `YDSDK-release.aar` | JinDai 官方 SDK |
 | `adgain-sdk-4.2.8.aar` | AdGain 官方 SDK。4.2.8 已有 Banner API，当前聚合桥仍未对接，该源 Banner 会 `formatUnsupported` |
 | `litemob-core-2.9.5.aar` | LiteMob 官方 SDK，对应 `com.ltmb.ltsdk:core:2.9.5` |
