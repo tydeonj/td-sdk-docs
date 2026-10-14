@@ -1,6 +1,6 @@
 # 03 iOS 集成
 
-> 文档版本：1.1.6 · SDK `1.1.2.12`
+> 文档版本：1.1.6 · SDK `1.1.2.13`
 
 推荐把 **TD 核心和全部广告源** 都加上（每个源都是 **TD 模块 + 官方 SDK**）。只加 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -16,7 +16,7 @@
 | Xcode | 14 及以上 |
 | 接入 | CocoaPods，`use_frameworks! :linkage => :static` |
 | Other Linker Flags | **必须** `-ObjC`（保留 `$(inherited)`） |
-| 当前 SDK | `1.1.2.12` |
+| 当前 SDK | `1.1.2.13` |
 
 ---
 
@@ -30,7 +30,7 @@ TD 模块走 CocoaPods Trunk（二进制在 Gitee）。对方官方 SDK 仍按�
 platform :ios, '12.0'
 use_frameworks! :linkage => :static
 
-ver = '1.1.2.12'
+ver = '1.1.2.13'
 
 target 'YourApp' do
   # TD 核心（两行必须同号）
@@ -41,9 +41,9 @@ target 'YourApp' do
   pod 'TDAdsJDSDK', ver
   pod 'JinDaiSDK', :subspecs => ['JinDaiSDK']
 
-  # AdGain（Trunk 没有 4.2.8.2 时按 AdGain 文档改 :path）
+  # AdGain（Trunk 没有 4.2.8.4 时按 AdGain 文档改 :path）
   pod 'TDAdsAdGain', ver
-  pod 'AdGainSDK', '4.2.8.2'
+  pod 'AdGainSDK', '4.2.8.4'
 
   # LiteMob（Deployment Target ≥ 12.2，见 §3）
   pod 'TDAdsLtmb', ver
@@ -65,7 +65,7 @@ end
 
 ### AdGain
 
-Trunk 若尚未收录 `AdGainSDK` `4.2.8.2`，按 AdGain 官方仓库把 SDK 放到本地后 `:path` 引入（不要把账号写进文档）。Android 对方 SDK 版本跟 AdGain Android 官方，与 iOS 版本号可以不同。
+Trunk 若尚未收录 `AdGainSDK` `4.2.8.4`，按 AdGain 官方仓库把 SDK 放到本地后 `:path` 引入（不要把账号写进文档）。Android 对方 SDK 版本跟 AdGain Android 官方，与 iOS 版本号可以不同。
 
 **JinDai、AdGain 没有 IDFA 不出广告。** 须 ATT 授权；`setAuthUID` 默认关，用户同意后、**init 前**打开，见 [04](./04_初始化与隐私.md)。
 

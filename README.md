@@ -1,7 +1,7 @@
 # TD SDK 对接文档
 
 > 文档版本：**1.1.6**  
-> SDK 版本：Android **`1.1.2.10`** · iOS **`1.1.2.12`**
+> SDK 版本：Android **`1.1.2.11`** · iOS **`1.1.2.13`**
 
 欢迎使用 TD 聚合 SDK。按下面顺序接入激励、插屏、开屏、横幅、原生。
 
@@ -159,7 +159,7 @@ SDK **不会**在 Load 成功后自动 Show。原生自渲染要先拼布局再 
 
 # 02 Android 集成
 
-> 文档版本：1.1.7 · SDK `1.1.2.10`
+> 文档版本：1.1.7 · SDK `1.1.2.11`
 
 推荐把 **TD 核心和全部广告源** 都加上（每个源都是 **TD 模块 + 官方 SDK**）。只加了 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -175,7 +175,7 @@ SDK **不会**在 Load 成功后自动 Show。原生自渲染要先拼布局再 
 | minSdk | 16 |
 | Java | 8 及以上 |
 | 初始化进程 | **仅主进程**（否则 `1002`） |
-| 当前 SDK | `1.1.2.10` |
+| 当前 SDK | `1.1.2.11` |
 
 ---
 
@@ -202,7 +202,7 @@ allprojects {
 复制到 **app 模块** `dependencies`：
 
 ```groovy
-def tdVer = '1.1.2.10'
+def tdVer = '1.1.2.11'
 
 implementation "com.tyedo:td-ads-base:${tdVer}"
 implementation "com.tyedo:td-ads-sdk:${tdVer}"
@@ -232,23 +232,23 @@ implementation 'androidx.cardview:cardview:1.0.0'
 
 这是第 3 节的本地替换：每个 TD 模块、每个源的官方 SDK 各一个 AAR。解压后放到 `app/libs/`。Glide / Gson / OkHttp / CardView 仍走 Maven Central。LiteMob 只放官方 `core` 这一个包。
 
-- [Gitee 下载](./TD_SDK_对接文档/downloads/td-sdk-android-1.1.2.10-full.zip)
-- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/td-sdk-android-1.1.2.10-full.zip)
+- [Gitee 下载](./TD_SDK_对接文档/downloads/td-sdk-android-1.1.2.11-full.zip)
+- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/td-sdk-android-1.1.2.11-full.zip)
 
 项目级仓库保持第 2 节。app 模块把第 3 节改成：
 
 ```groovy
 dependencies {
-    implementation files('libs/td-ads-base-1.1.2.10.aar')
-    implementation files('libs/td-ads-sdk-1.1.2.10.aar')
+    implementation files('libs/td-ads-base-1.1.2.11.aar')
+    implementation files('libs/td-ads-sdk-1.1.2.11.aar')
 
-    implementation files('libs/jdsdk_ads-1.1.2.10.aar')
+    implementation files('libs/jdsdk_ads-1.1.2.11.aar')
     implementation files('libs/YDSDK-release.aar')
 
-    implementation files('libs/adgain_ads-1.1.2.10.aar')
+    implementation files('libs/adgain_ads-1.1.2.11.aar')
     implementation files('libs/adgain-sdk-4.2.8.aar')
 
-    implementation files('libs/ltmb_ads-1.1.2.10.aar')
+    implementation files('libs/ltmb_ads-1.1.2.11.aar')
     // 与包内 litemob-core-2.9.5.aar 是同一个包。继续写坐标，传递依赖由第 2 节仓库解析
     implementation 'com.ltmb.ltsdk:core:2.9.5'
 
@@ -263,11 +263,11 @@ dependencies {
 
 | 文件 | 说明 |
 | --- | --- |
-| `td-ads-base-1.1.2.10.aar` | TD 核心 |
-| `td-ads-sdk-1.1.2.10.aar` | TD 对外 API |
-| `jdsdk_ads-1.1.2.10.aar` | JinDai 桥 |
-| `adgain_ads-1.1.2.10.aar` | AdGain 桥 |
-| `ltmb_ads-1.1.2.10.aar` | LiteMob 桥 |
+| `td-ads-base-1.1.2.11.aar` | TD 核心 |
+| `td-ads-sdk-1.1.2.11.aar` | TD 对外 API |
+| `jdsdk_ads-1.1.2.11.aar` | JinDai 桥 |
+| `adgain_ads-1.1.2.11.aar` | AdGain 桥 |
+| `ltmb_ads-1.1.2.11.aar` | LiteMob 桥 |
 | `YDSDK-release.aar` | JinDai 官方 SDK |
 | `adgain-sdk-4.2.8.aar` | AdGain 官方 SDK。4.2.8 已有 Banner API，当前聚合桥仍未对接，该源 Banner 会 `formatUnsupported` |
 | `litemob-core-2.9.5.aar` | LiteMob 官方 SDK，对应 `com.ltmb.ltsdk:core:2.9.5` |
@@ -362,7 +362,7 @@ Android 13+ 若使用广告标识，按 Google 要求增加：
 
 # 03 iOS 集成
 
-> 文档版本：1.1.6 · SDK `1.1.2.12`
+> 文档版本：1.1.6 · SDK `1.1.2.13`
 
 推荐把 **TD 核心和全部广告源** 都加上（每个源都是 **TD 模块 + 官方 SDK**）。只加 TD 模块、没加官方 SDK，加载会失败（错误码 `1020`）。
 
@@ -378,7 +378,7 @@ Android 13+ 若使用广告标识，按 Google 要求增加：
 | Xcode | 14 及以上 |
 | 接入 | CocoaPods，`use_frameworks! :linkage => :static` |
 | Other Linker Flags | **必须** `-ObjC`（保留 `$(inherited)`） |
-| 当前 SDK | `1.1.2.12` |
+| 当前 SDK | `1.1.2.13` |
 
 ---
 
@@ -392,7 +392,7 @@ TD 模块走 CocoaPods Trunk（二进制在 Gitee）。对方官方 SDK 仍按�
 platform :ios, '12.0'
 use_frameworks! :linkage => :static
 
-ver = '1.1.2.12'
+ver = '1.1.2.13'
 
 target 'YourApp' do
   # TD 核心（两行必须同号）
@@ -403,9 +403,9 @@ target 'YourApp' do
   pod 'TDAdsJDSDK', ver
   pod 'JinDaiSDK', :subspecs => ['JinDaiSDK']
 
-  # AdGain（Trunk 没有 4.2.8.2 时按 AdGain 文档改 :path）
+  # AdGain（Trunk 没有 4.2.8.4 时按 AdGain 文档改 :path）
   pod 'TDAdsAdGain', ver
-  pod 'AdGainSDK', '4.2.8.2'
+  pod 'AdGainSDK', '4.2.8.4'
 
   # LiteMob（Deployment Target ≥ 12.2，见 §3）
   pod 'TDAdsLtmb', ver
@@ -427,7 +427,7 @@ end
 
 ### AdGain
 
-Trunk 若尚未收录 `AdGainSDK` `4.2.8.2`，按 AdGain 官方仓库把 SDK 放到本地后 `:path` 引入（不要把账号写进文档）。Android 对方 SDK 版本跟 AdGain Android 官方，与 iOS 版本号可以不同。
+Trunk 若尚未收录 `AdGainSDK` `4.2.8.4`，按 AdGain 官方仓库把 SDK 放到本地后 `:path` 引入（不要把账号写进文档）。Android 对方 SDK 版本跟 AdGain Android 官方，与 iOS 版本号可以不同。
 
 **JinDai、AdGain 没有 IDFA 不出广告。** 须 ATT 授权；`setAuthUID` 默认关，用户同意后、**init 前**打开，见 [04](./04_初始化与隐私.md)。
 
@@ -1449,7 +1449,7 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 [02 Android 集成](#02-android-集成) AdGain 一节有下载地址。放到 `app/libs/` 后按该页依赖接入。
 
 **本地全量包从哪下？**  
-[02 Android 集成](#02-android-集成)「本地全量包集成与下载」。压缩包与第 3 节一一对应：TD SDK `1.1.2.10`、JinDai、AdGain，以及 LiteMob 官方 `core` 这一个包。解压到 `app/libs/` 后按该节依赖接入。
+[02 Android 集成](#02-android-集成)「本地全量包集成与下载」。压缩包与第 3 节一一对应：TD SDK `1.1.2.11`、JinDai、AdGain，以及 LiteMob 官方 `core` 这一个包。解压到 `app/libs/` 后按该节依赖接入。
 
 **插屏报 adapter 缺失，激励却正常？**  
 激励和插屏是不同模块。Android / iOS 都要单独加对应 TD 模块和三方 SDK。见 [02](./02_Android集成.md) / [03](./03_iOS集成.md)。
