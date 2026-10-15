@@ -211,8 +211,8 @@ implementation "com.tyedo:td-ads-sdk:${tdVer}"
 implementation "com.tyedo:jdsdk_ads:${tdVer}"
 implementation files('libs/YDSDK-release.aar')
 
-// AdGain：下载 adgain-sdk-4.2.8.aar 放到 app/libs/（见下方下载）
-implementation "com.tyedo:adgain_ads:${tdVer}"
+// AdGain：下载 adgain-sdk-4.2.8.aar 放到 app/libs/（见下方下载）。桥是 1.1.2.12，核心和其它源仍用 tdVer
+implementation "com.tyedo:adgain_ads:1.1.2.12"
 implementation files('libs/adgain-sdk-4.2.8.aar')
 
 // LiteMob
@@ -245,7 +245,7 @@ dependencies {
     implementation files('libs/jdsdk_ads-1.1.2.11.aar')
     implementation files('libs/YDSDK-release.aar')
 
-    implementation files('libs/adgain_ads-1.1.2.11.aar')
+    implementation files('libs/adgain_ads-1.1.2.12.aar')
     implementation files('libs/adgain-sdk-4.2.8.aar')
 
     implementation files('libs/ltmb_ads-1.1.2.11.aar')
@@ -266,7 +266,7 @@ dependencies {
 | `td-ads-base-1.1.2.11.aar` | TD 核心 |
 | `td-ads-sdk-1.1.2.11.aar` | TD 对外 API |
 | `jdsdk_ads-1.1.2.11.aar` | JinDai 桥 |
-| `adgain_ads-1.1.2.11.aar` | AdGain 桥 |
+| `adgain_ads-1.1.2.12.aar` | AdGain 桥 |
 | `ltmb_ads-1.1.2.11.aar` | LiteMob 桥 |
 | `YDSDK-release.aar` | JinDai 官方 SDK |
 | `adgain-sdk-4.2.8.aar` | AdGain 官方 SDK。4.2.8 已有 Banner API，当前聚合桥仍未对接，该源 Banner 会 `formatUnsupported` |
