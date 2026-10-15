@@ -232,8 +232,10 @@ implementation 'androidx.cardview:cardview:1.0.0'
 
 这是第 3 节的本地替换：每个 TD 模块、每个源的官方 SDK 各一个 AAR。解压后放到 `app/libs/`。Glide / Gson / OkHttp / CardView 仍走 Maven Central。LiteMob 只放官方 `core` 这一个包。
 
-- [Gitee 下载](./TD_SDK_对接文档/downloads/td-sdk-android-1.1.2.11-full.zip)
-- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/td-sdk-android-1.1.2.11-full.zip)
+当前离线包：核心、JinDai 桥、LiteMob 桥是线上 `1.1.2.11`，AdGain 桥是线上 `1.1.2.12`。
+
+- [Gitee 下载](./TD_SDK_对接文档/downloads/td-sdk-android-1.1.2.12-full.zip)
+- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/td-sdk-android-1.1.2.12-full.zip)
 
 项目级仓库保持第 2 节。app 模块把第 3 节改成：
 
@@ -1450,7 +1452,7 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 [02 Android 集成](#02-android-集成) AdGain 一节有下载地址。放到 `app/libs/` 后按该页依赖接入。
 
 **本地全量包从哪下？**  
-[02 Android 集成](#02-android-集成)「本地全量包集成与下载」。压缩包与第 3 节一一对应：TD SDK `1.1.2.11`、JinDai、AdGain，以及 LiteMob 官方 `core` 这一个包。解压到 `app/libs/` 后按该节依赖接入。
+[02 Android 集成](#02-android-集成)「本地全量包集成与下载」。压缩包 `td-sdk-android-1.1.2.12-full.zip` 与第 3 节一一对应：核心、JinDai 桥、LiteMob 桥为 `1.1.2.11`，AdGain 桥为 `1.1.2.12`，另有 JinDai、AdGain、LiteMob 官方包。解压到 `app/libs/` 后按该节依赖接入。
 
 **插屏报 adapter 缺失，激励却正常？**  
 激励和插屏是不同模块。Android / iOS 都要单独加对应 TD 模块和三方 SDK。见 [02](./02_Android集成.md) / [03](./03_iOS集成.md)。
