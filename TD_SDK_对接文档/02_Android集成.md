@@ -73,7 +73,7 @@ implementation 'androidx.cardview:cardview:1.0.0'
 
 这是第 3 节的本地替换：每个 TD 模块、每个源的官方 SDK 各一个 AAR。解压后放到 `app/libs/`。Glide / Gson / OkHttp / CardView 仍走 Maven Central。LiteMob 只放官方 `core` 这一个包。
 
-当前离线包：核心、JinDai 桥、LiteMob 桥是线上 `1.1.2.11`，AdGain 桥是线上 `1.1.2.12`。
+当前离线包：
 
 - [Gitee 下载](https://gitee.com/tydeo/td-sdk-docs/raw/main/TD_SDK_对接文档/downloads/td-sdk-android-1.1.2.12-full.zip)
 - [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/td-sdk-android-1.1.2.12-full.zip)
