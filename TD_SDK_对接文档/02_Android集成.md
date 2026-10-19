@@ -48,16 +48,16 @@ def tdVer = '1.1.2.11'
 implementation "com.tyedo:td-ads-base:${tdVer}"
 implementation "com.tyedo:td-ads-sdk:${tdVer}"
 
-// JinDai：下载 YDSDK-release.aar 放到 app/libs/（见下方下载）
-implementation "com.tyedo:jdsdk_ads:${tdVer}"
+// JinDai：下载 YDSDK-release.aar 放到 app/libs/（见下方下载）。桥是 1.1.2.12，核心仍用 tdVer
+implementation "com.tyedo:jdsdk_ads:1.1.2.12"
 implementation files('libs/YDSDK-release.aar')
 
-// AdGain：下载 adgain-sdk-4.2.8.aar 放到 app/libs/（见下方下载）。桥是 1.1.2.12，核心和其它源仍用 tdVer
-implementation "com.tyedo:adgain_ads:1.1.2.12"
+// AdGain：下载 adgain-sdk-4.2.8.aar 放到 app/libs/（见下方下载）。桥是 1.1.2.13，核心仍用 tdVer
+implementation "com.tyedo:adgain_ads:1.1.2.13"
 implementation files('libs/adgain-sdk-4.2.8.aar')
 
-// LiteMob
-implementation "com.tyedo:ltmb_ads:${tdVer}"
+// LiteMob。桥是 1.1.2.12，核心仍用 tdVer
+implementation "com.tyedo:ltmb_ads:1.1.2.12"
 implementation 'com.ltmb.ltsdk:core:2.9.5'
 implementation 'com.github.bumptech.glide:glide:4.13.0'
 implementation 'com.google.code.gson:gson:2.8.6'
@@ -75,8 +75,8 @@ implementation 'androidx.cardview:cardview:1.0.0'
 
 当前离线包：
 
-- [Gitee 下载](https://gitee.com/tydeo/td-sdk-docs/raw/main/TD_SDK_对接文档/downloads/td-sdk-android-1.1.2.12-full.zip)
-- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/td-sdk-android-1.1.2.12-full.zip)
+- [Gitee 下载](https://gitee.com/tydeo/td-sdk-docs/raw/main/TD_SDK_对接文档/downloads/td-sdk-android-1.1.2.13-full.zip)
+- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/td-sdk-android-1.1.2.13-full.zip)
 
 项目级仓库保持第 2 节。app 模块把第 3 节改成：
 
@@ -85,13 +85,13 @@ dependencies {
     implementation files('libs/td-ads-base-1.1.2.11.aar')
     implementation files('libs/td-ads-sdk-1.1.2.11.aar')
 
-    implementation files('libs/jdsdk_ads-1.1.2.11.aar')
+    implementation files('libs/jdsdk_ads-1.1.2.12.aar')
     implementation files('libs/YDSDK-release.aar')
 
-    implementation files('libs/adgain_ads-1.1.2.12.aar')
+    implementation files('libs/adgain_ads-1.1.2.13.aar')
     implementation files('libs/adgain-sdk-4.2.8.aar')
 
-    implementation files('libs/ltmb_ads-1.1.2.11.aar')
+    implementation files('libs/ltmb_ads-1.1.2.12.aar')
     // 与包内 litemob-core-2.9.5.aar 是同一个包。继续写坐标，传递依赖由第 2 节仓库解析
     implementation 'com.ltmb.ltsdk:core:2.9.5'
 
@@ -108,9 +108,9 @@ dependencies {
 | --- | --- |
 | `td-ads-base-1.1.2.11.aar` | TD 核心 |
 | `td-ads-sdk-1.1.2.11.aar` | TD 对外 API |
-| `jdsdk_ads-1.1.2.11.aar` | JinDai 桥 |
-| `adgain_ads-1.1.2.12.aar` | AdGain 桥 |
-| `ltmb_ads-1.1.2.11.aar` | LiteMob 桥 |
+| `jdsdk_ads-1.1.2.12.aar` | JinDai 桥 |
+| `adgain_ads-1.1.2.13.aar` | AdGain 桥 |
+| `ltmb_ads-1.1.2.12.aar` | LiteMob 桥 |
 | `YDSDK-release.aar` | JinDai 官方 SDK |
 | `adgain-sdk-4.2.8.aar` | AdGain 官方 SDK。4.2.8 已有 Banner API，当前聚合桥仍未对接，该源 Banner 会 `formatUnsupported` |
 | `litemob-core-2.9.5.aar` | LiteMob 官方 SDK，对应 `com.ltmb.ltsdk:core:2.9.5` |

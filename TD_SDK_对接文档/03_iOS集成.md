@@ -37,16 +37,16 @@ target 'YourApp' do
   pod 'TDAdsBase', ver
   pod 'TDAdsSDK',  ver
 
-  # JinDai（下游 subspec 按 JinDai 官方补）
-  pod 'TDAdsJDSDK', ver
+  # JinDai（下游 subspec 按 JinDai 官方补）。适配器 1.1.2.15，核心仍用上面的 ver
+  pod 'TDAdsJDSDK', '1.1.2.15'
   pod 'JinDaiSDK', :subspecs => ['JinDaiSDK']
 
-  # AdGain（Trunk 没有 4.2.8.4 时按 AdGain 文档改 :path）
-  pod 'TDAdsAdGain', ver
+  # AdGain（Trunk 没有 4.2.8.4 时按 AdGain 文档改 :path）。适配器 1.1.2.15，核心仍用上面的 ver
+  pod 'TDAdsAdGain', '1.1.2.15'
   pod 'AdGainSDK', '4.2.8.4'
 
-  # LiteMob（Deployment Target ≥ 12.2，见 §3）。适配器 1.1.2.14，核心仍用上面的 ver
-  pod 'TDAdsLtmb', '1.1.2.14'
+  # LiteMob（Deployment Target ≥ 12.2，见 §3）。适配器 1.1.2.15，核心仍用上面的 ver
+  pod 'TDAdsLtmb', '1.1.2.15'
   pod 'LitemobSDK', '~> 5.5'
 end
 ```
@@ -71,7 +71,7 @@ Trunk 若尚未收录 `AdGainSDK` `4.2.8.4`，按 AdGain 官方仓库把 SDK 放
 
 ### LiteMob
 
-Litemob 是动态库，检查 **Embed & Sign**。纯 ObjC 工程加一个空 `Dummy.swift`。接 Litemob 时：**Deployment Target ≥ 12.2**，**Always Embed Swift Standard Libraries = NO**，`LD_RUNPATH_SEARCH_PATHS` 把 `/usr/lib/swift` 放最前。否则真机可能 SIGABRT。核心 TD 仍支持 iOS 12.0。`TDAdsLtmb` 当前 `1.1.2.14`，`TDAdsBase` / `TDAdsSDK` 仍是 `1.1.2.13`。
+Litemob 是动态库，检查 **Embed & Sign**。纯 ObjC 工程加一个空 `Dummy.swift`。接 Litemob 时：**Deployment Target ≥ 12.2**，**Always Embed Swift Standard Libraries = NO**，`LD_RUNPATH_SEARCH_PATHS` 把 `/usr/lib/swift` 放最前。否则真机可能 SIGABRT。核心 TD 仍支持 iOS 12.0。`TDAdsJDSDK`、`TDAdsAdGain`、`TDAdsLtmb` 当前 `1.1.2.15`，`TDAdsBase` / `TDAdsSDK` 仍是 `1.1.2.13`。
 
 ---
 
