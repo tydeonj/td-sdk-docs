@@ -27,6 +27,9 @@ jobs:
         run: |
           npm install
           npm run docs:build
+          # 确保全量包等静态资源进站点（Vite publicDir + 兜底拷贝）
+          mkdir -p .vitepress/dist/downloads
+          cp -R public/downloads/. .vitepress/dist/downloads/
           touch .vitepress/dist/.nojekyll
           cp .vitepress/dist/index.html .vitepress/dist/404.html || true
       - name: Deploy to gh-pages

@@ -14,7 +14,9 @@ export default defineConfig({
   cleanUrls: true,
   ignoreDeadLinks: true,
   lastUpdated: true,
+  // srcDir 在仓库根 TD_SDK_对接文档 时，默认 public 会偏到源码目录；显式指向 docs-site/public。
   vite: {
+    publicDir: resolve(siteRoot, 'public'),
     resolve: {
       alias: {
         vue: resolve(siteRoot, 'node_modules/vue'),
