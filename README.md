@@ -376,7 +376,7 @@ Android 13+ 若使用广告标识，按 Google 要求增加：
 
 | 项 | 说明 |
 | --- | --- |
-| 最低系统 | iOS 12.0（接 LiteMob 时宿主 **≥ 12.2**） |
+| 最低系统 | iOS 12.0 |
 | Xcode | 14 及以上 |
 | 接入 | CocoaPods，`use_frameworks! :linkage => :static` |
 | Other Linker Flags | **必须** `-ObjC`（保留 `$(inherited)`） |
@@ -409,9 +409,9 @@ target 'YourApp' do
   pod 'TDAdsAdGain', '1.1.2.15'
   pod 'AdGainSDK', '4.2.8.4'
 
-  # LiteMob（Deployment Target ≥ 12.2，见 §3）。适配器 1.1.2.15，核心仍用上面的 ver
-  pod 'TDAdsLtmb', '1.1.2.15'
-  pod 'LitemobSDK', '~> 5.5'
+  # LiteMob
+  pod 'TDAdsLtmb', '1.1.2.16'
+  pod 'LitemobAd', '1.7.2'
 end
 ```
 
@@ -435,7 +435,12 @@ Trunk 若尚未收录 `AdGainSDK` `4.2.8.4`，按 AdGain 官方仓库把 SDK 放
 
 ### LiteMob
 
-Litemob 是动态库，检查 **Embed & Sign**。纯 ObjC 工程加一个空 `Dummy.swift`。接 Litemob 时：**Deployment Target ≥ 12.2**，**Always Embed Swift Standard Libraries = NO**，`LD_RUNPATH_SEARCH_PATHS` 把 `/usr/lib/swift` 放最前。否则真机可能 SIGABRT。核心 TD 仍支持 iOS 12.0。`TDAdsJDSDK`、`TDAdsAdGain`、`TDAdsLtmb` 当前 `1.1.2.15`，`TDAdsBase` / `TDAdsSDK` 仍是 `1.1.2.13`。
+```ruby
+pod 'TDAdsLtmb', '1.1.2.16'
+pod 'LitemobAd', '1.7.2'
+```
+
+`LitemobAd` `1.7.2` 起对方是静态库，头文件 `#import <LitemobAd/LitemobSDK.h>`。`TDAdsLtmb` `1.1.2.16` 按这个模块编译。`1.1.2.15` 及更早仍引用旧的 `LitemobSDK`，不能和 `LitemobAd` 装在一起。对方 pod 会把 Always Embed Swift Standard Libraries 设为 YES。这个 xcframework 是静态库，不用 Embed。`TDAdsJDSDK`、`TDAdsAdGain` 当前 `1.1.2.15`，`TDAdsBase` / `TDAdsSDK` 仍是 `1.1.2.13`。
 
 ---
 
