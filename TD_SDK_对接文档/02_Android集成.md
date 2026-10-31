@@ -58,7 +58,7 @@ implementation files('libs/adgain-sdk-4.2.8.aar')
 
 // LiteMob。桥是 1.1.2.14，核心仍用 tdVer
 implementation "com.tyedo:ltmb_ads:1.1.2.14"
-implementation 'com.ltmb.ltsdk:core:2.9.5'
+implementation 'com.ltmb.ltsdk:core:3.6.5'
 implementation 'com.github.bumptech.glide:glide:4.13.0'
 implementation 'com.google.code.gson:gson:2.8.6'
 implementation 'com.squareup.okhttp3:okhttp:4.12.0'
@@ -92,8 +92,8 @@ dependencies {
     implementation files('libs/adgain-sdk-4.2.8.aar')
 
     implementation files('libs/ltmb_ads-1.1.2.14.aar')
-    // 与包内 litemob-core-2.9.5.aar 是同一个包。继续写坐标，传递依赖由第 2 节仓库解析
-    implementation 'com.ltmb.ltsdk:core:2.9.5'
+    // 与包内 litemob-core-3.6.5.aar 是同一个包。继续写坐标，传递依赖由第 2 节仓库解析
+    implementation 'com.ltmb.ltsdk:core:3.6.5'
 
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     implementation 'com.google.code.gson:gson:2.8.6'
@@ -102,7 +102,7 @@ dependencies {
 }
 ```
 
-工程里已有 Glide / Gson / OkHttp / CardView 可不再重复加。混淆仍用第 6 节。`litemob-core-2.9.5.aar` 不要改成 `files()`，否则传递依赖不会进来。
+工程里已有 Glide / Gson / OkHttp / CardView 可不再重复加。混淆仍用第 6 节。`litemob-core-3.6.5.aar` 不要改成 `files()`，否则传递依赖不会进来。
 
 | 文件 | 说明 |
 | --- | --- |
@@ -113,7 +113,7 @@ dependencies {
 | `ltmb_ads-1.1.2.14.aar` | LiteMob 桥 |
 | `YDSDK-release.aar` | JinDai 官方 SDK |
 | `adgain-sdk-4.2.8.aar` | AdGain 官方 SDK（含 Banner `BannerAd`） |
-| `litemob-core-2.9.5.aar` | LiteMob 官方 SDK，对应 `com.ltmb.ltsdk:core:2.9.5` |
+| `litemob-core-3.6.5.aar` | LiteMob 官方 SDK，对应 `com.ltmb.ltsdk:core:3.6.5` |
 
 ---
 
