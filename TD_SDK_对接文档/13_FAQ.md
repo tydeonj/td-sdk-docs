@@ -68,13 +68,13 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 [02 Android 集成](./02_Android集成.md) AdGain 一节有下载地址。放到 `app/libs/` 后按该页依赖接入。
 
 **本地全量包从哪下？**  
-[02 Android 集成](./02_Android集成.md)「本地全量包集成与下载」。压缩包 `td-sdk-android-1.1.2.13-full.zip` 与第 3 节一一对应：核心为 `1.1.2.11`，JinDai 桥、LiteMob 桥为 `1.1.2.12`，AdGain 桥为 `1.1.2.13`，另有 JinDai、AdGain、LiteMob 官方包。解压到 `app/libs/` 后按该节依赖接入。
+[02 Android 集成](./02_Android集成.md)「本地全量包集成与下载」。压缩包 `td-sdk-android-1.1.2.13-full.zip` 与第 3 节一一对应：核心为 `1.1.2.11`，JinDai 桥为 `1.1.2.12`，AdGain 桥与 LiteMob 桥为 `1.1.2.14`，另有 JinDai、AdGain、LiteMob 官方包。解压到 `app/libs/` 后按该节依赖接入。
 
 **插屏报 adapter 缺失，激励却正常？**  
 激励和插屏是不同模块。Android / iOS 都要单独加对应 TD 模块和三方 SDK。见 [02](./02_Android集成.md) / [03](./03_iOS集成.md)。
 
 **AdGain 没有 Banner？**  
-iOS 已对接官方 Banner。Android `adgain-sdk-4.2.8` 已有 `BannerAd`，当前聚合桥仍未对接，该源会 `formatUnsupported`；Android Banner 位不要配 AdGain。
+双端均已对接官方 Banner（iOS `AdGainBannerView`，Android `BannerAd`）。若仍无填充，查 Config 层 pid、瀑布与库存，而非桥未接。
 
 **iOS 能跑但编译仍有链接警告？**  
 核对 ATS、`-ObjC`、LiteMob 版本与 rpath。见 [03](./03_iOS集成.md)。
