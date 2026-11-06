@@ -47,7 +47,7 @@ target 'YourApp' do
 
   # LiteMob
   pod 'TDAdsLtmb', '1.1.2.17'
-  pod 'LitemobAd', '1.7.8'
+  pod 'LitemobAd', '1.7.9'
 end
 ```
 
@@ -73,10 +73,10 @@ Trunk 若尚未收录 `AdGainSDK` `4.2.8.4`，按 AdGain 官方仓库把 SDK 放
 
 ```ruby
 pod 'TDAdsLtmb', '1.1.2.17'
-pod 'LitemobAd', '1.7.8'
+pod 'LitemobAd', '1.7.9'
 ```
 
-`LitemobAd` `1.7.8` 是静态库，头文件 `#import <LitemobAd/LitemobSDK.h>`。`TDAdsLtmb` `1.1.2.17` 按这个模块编译。`1.1.2.15` 及更早仍引用旧的 `LitemobSDK`，不能和 `LitemobAd` 装在一起。对方 pod 会把 Always Embed Swift Standard Libraries 设为 YES。这个 xcframework 是静态库，不用 Embed。`TDAdsAdGain` 与 `TDAdsLtmb` 当前 `1.1.2.17`；`TDAdsJDSDK` 仍为 `1.1.2.15`；`TDAdsBase` / `TDAdsSDK` 仍是 `1.1.2.13`。
+`LitemobAd` `1.7.9` 是静态库，头文件 `#import <LitemobAd/LitemobSDK.h>`。这一版不再附带 `LTMBAdSDK.bundle`、`LML15ADSDK.bundle`、`LTMBBaseResources.bundle`。`TDAdsLtmb` `1.1.2.17` 按这个模块编译。`1.1.2.15` 及更早仍引用旧的 `LitemobSDK`，不能和 `LitemobAd` 装在一起。对方 pod 会把 Always Embed Swift Standard Libraries 设为 YES。这个 xcframework 是静态库，不用 Embed。`TDAdsAdGain` 与 `TDAdsLtmb` 当前 `1.1.2.17`；`TDAdsJDSDK` 仍为 `1.1.2.15`；`TDAdsBase` / `TDAdsSDK` 仍是 `1.1.2.13`。
 
 ---
 
