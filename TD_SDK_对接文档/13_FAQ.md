@@ -64,11 +64,11 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 **JinDai 的 `YDSDK-release.aar` 从哪下？**  
 [02 Android 集成](./02_Android集成.md) JinDai 一节有下载地址。放到 `app/libs/` 后按该页依赖接入。
 
-**AdGain 的 `adgain-sdk-4.2.8.aar` 从哪下？**  
+**AdGain 的 `adgain-sdk-4.2.9.2.aar` 从哪下？**  
 [02 Android 集成](./02_Android集成.md) AdGain 一节有下载地址。放到 `app/libs/` 后按该页依赖接入。
 
 **本地全量包从哪下？**  
-[02 Android 集成](./02_Android集成.md)「本地全量包集成与下载」。压缩包 `td-sdk-android-1.1.2.13-full.zip` 与第 3 节一一对应：核心为 `1.1.2.11`，JinDai 桥为 `1.1.2.12`，AdGain 桥与 LiteMob 桥为 `1.1.2.14`，另有 JinDai、AdGain、LiteMob 官方包。解压到 `app/libs/` 后按该节依赖接入。
+[02 Android 集成](./02_Android集成.md)「本地全量包集成与下载」。压缩包 `td-sdk-android-1.1.2.13-full.zip`：核心 `1.1.2.11`，JinDai 桥 `1.1.2.12`，包内 AdGain 桥与 LiteMob 桥 aar 是 `1.1.2.15`，AdGain 官方包是 `adgain-sdk-4.2.9.2.aar`，LiteMob 官方 `core` 是 `3.7.4`。解压到 `app/libs/` 后按该节依赖接入。
 
 **插屏报 adapter 缺失，激励却正常？**  
 激励和插屏是不同模块。Android / iOS 都要单独加对应 TD 模块和三方 SDK。见 [02](./02_Android集成.md) / [03](./03_iOS集成.md)。

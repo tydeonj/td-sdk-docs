@@ -211,13 +211,13 @@ implementation "com.tyedo:td-ads-sdk:${tdVer}"
 implementation "com.tyedo:jdsdk_ads:1.1.2.12"
 implementation files('libs/YDSDK-release.aar')
 
-// AdGain：下载 adgain-sdk-4.2.8.aar 放到 app/libs/（见下方下载）。桥是 1.1.2.14，核心仍用 tdVer
-implementation "com.tyedo:adgain_ads:1.1.2.14"
-implementation files('libs/adgain-sdk-4.2.8.aar')
+// AdGain：下载 adgain-sdk-4.2.9.2.aar 放到 app/libs/（见下方下载）。桥是 1.1.2.15，核心仍用 tdVer
+implementation "com.tyedo:adgain_ads:1.1.2.15"
+implementation files('libs/adgain-sdk-4.2.9.2.aar')
 
-// LiteMob。桥是 1.1.2.14，核心仍用 tdVer
-implementation "com.tyedo:ltmb_ads:1.1.2.14"
-implementation 'com.ltmb.ltsdk:core:3.6.5'
+// LiteMob。桥是 1.1.2.15，核心仍用 tdVer
+implementation "com.tyedo:ltmb_ads:1.1.2.15"
+implementation 'com.ltmb.ltsdk:core:3.7.4'
 implementation 'com.github.bumptech.glide:glide:4.13.0'
 implementation 'com.google.code.gson:gson:2.8.6'
 implementation 'com.squareup.okhttp3:okhttp:4.12.0'
@@ -247,12 +247,12 @@ dependencies {
     implementation files('libs/jdsdk_ads-1.1.2.12.aar')
     implementation files('libs/YDSDK-release.aar')
 
-    implementation files('libs/adgain_ads-1.1.2.14.aar')
-    implementation files('libs/adgain-sdk-4.2.8.aar')
+    implementation files('libs/adgain_ads-1.1.2.15.aar')
+    implementation files('libs/adgain-sdk-4.2.9.2.aar')
 
-    implementation files('libs/ltmb_ads-1.1.2.14.aar')
-    // 与包内 litemob-core-3.6.5.aar 是同一个包。继续写坐标，传递依赖由第 2 节仓库解析
-    implementation 'com.ltmb.ltsdk:core:3.6.5'
+    implementation files('libs/ltmb_ads-1.1.2.15.aar')
+    // 与包内 litemob-core-3.7.4.aar 是同一个包。继续写坐标，传递依赖由第 2 节仓库解析
+    implementation 'com.ltmb.ltsdk:core:3.7.4'
 
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     implementation 'com.google.code.gson:gson:2.8.6'
@@ -261,18 +261,18 @@ dependencies {
 }
 ```
 
-工程里已有 Glide / Gson / OkHttp / CardView 可不再重复加。混淆仍用第 6 节。`litemob-core-3.6.5.aar` 不要改成 `files()`，否则传递依赖不会进来。
+工程里已有 Glide / Gson / OkHttp / CardView 可不再重复加。混淆仍用第 6 节。`litemob-core-3.7.4.aar` 不要改成 `files()`，否则传递依赖不会进来。
 
 | 文件 | 说明 |
 | --- | --- |
 | `td-ads-base-1.1.2.11.aar` | TD 核心 |
 | `td-ads-sdk-1.1.2.11.aar` | TD 对外 API |
 | `jdsdk_ads-1.1.2.12.aar` | JinDai 桥 |
-| `adgain_ads-1.1.2.14.aar` | AdGain 桥 |
-| `ltmb_ads-1.1.2.14.aar` | LiteMob 桥 |
+| `adgain_ads-1.1.2.15.aar` | AdGain 桥 |
+| `ltmb_ads-1.1.2.15.aar` | LiteMob 桥 |
 | `YDSDK-release.aar` | JinDai 官方 SDK |
-| `adgain-sdk-4.2.8.aar` | AdGain 官方 SDK（含 Banner `BannerAd`） |
-| `litemob-core-3.6.5.aar` | LiteMob 官方 SDK，对应 `com.ltmb.ltsdk:core:3.6.5` |
+| `adgain-sdk-4.2.9.2.aar` | AdGain 官方 SDK（含 Banner `BannerAd`） |
+| `litemob-core-3.7.4.aar` | LiteMob 官方 SDK，对应 `com.ltmb.ltsdk:core:3.7.4` |
 
 ---
 
@@ -289,12 +289,12 @@ dependencies {
 
 ### AdGain
 
-无需额外 Maven。下载官方 `adgain-sdk-4.2.8.aar`，放到 `app/libs/`：
+无需额外 Maven。下载官方 `adgain-sdk-4.2.9.2.aar`，放到 `app/libs/`：
 
-- [Gitee 下载](./TD_SDK_对接文档/downloads/adgain-sdk-4.2.8.aar)
-- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/adgain-sdk-4.2.8.aar)
+- [Gitee 下载](./TD_SDK_对接文档/downloads/adgain-sdk-4.2.9.2.aar)
+- [文档站下载](https://tydeonj.github.io/td-sdk-docs/downloads/adgain-sdk-4.2.9.2.aar)
 
-4.2.8 Banner 已对接官方 `BannerAd`。请求宽高走 `TDAdSize`（默认屏宽×50dp），Show 用 `getBannerView()`。
+4.2.9.2 Banner 已对接官方 `BannerAd`。请求宽高走 `TDAdSize`（默认屏宽×50dp），Show 用 `getBannerView()`。
 
 **JinDai、AdGain 没有 OAID 不出广告。** `setAuthUID` 默认关，用户同意后、**init 前**打开，见 [04](#04-初始化与隐私)。LiteMob / Sigmob / Mintegral 不依赖这一条。
 
@@ -405,13 +405,13 @@ target 'YourApp' do
   pod 'TDAdsJDSDK', '1.1.2.15'
   pod 'JinDaiSDK', :subspecs => ['JinDaiSDK']
 
-  # AdGain（Trunk 没有 4.2.8.4 时按 AdGain 文档改 :path）。适配器 1.1.2.17，核心仍用上面的 ver
-  pod 'TDAdsAdGain', '1.1.2.17'
-  pod 'AdGainSDK', '4.2.8.4'
+  # AdGain（Trunk 没有 4.2.8.9 时按 AdGain 文档改 :path）。适配器 1.1.2.18，核心仍用上面的 ver
+  pod 'TDAdsAdGain', '1.1.2.18'
+  pod 'AdGainSDK', '4.2.8.9'
 
   # LiteMob
-  pod 'TDAdsLtmb', '1.1.2.17'
-  pod 'LitemobAd', '1.7.9'
+  pod 'TDAdsLtmb', '1.1.2.18'
+  pod 'LitemobAd', '1.8.8'
 end
 ```
 
@@ -429,18 +429,18 @@ end
 
 ### AdGain
 
-Trunk 若尚未收录 `AdGainSDK` `4.2.8.4`，按 AdGain 官方仓库把 SDK 放到本地后 `:path` 引入（不要把账号写进文档）。Android 对方 SDK 版本跟 AdGain Android 官方，与 iOS 版本号可以不同。
+Trunk 若尚未收录 `AdGainSDK` `4.2.8.9`，按 AdGain 官方仓库把 SDK 放到本地后 `:path` 引入（不要把账号写进文档）。Android 对方 SDK 版本跟 AdGain Android 官方，与 iOS 版本号可以不同。
 
 **JinDai、AdGain 没有 IDFA 不出广告。** 须 ATT 授权；`setAuthUID` 默认关，用户同意后、**init 前**打开，见 [04](./04_初始化与隐私.md)。
 
 ### LiteMob
 
 ```ruby
-pod 'TDAdsLtmb', '1.1.2.17'
-pod 'LitemobAd', '1.7.9'
+pod 'TDAdsLtmb', '1.1.2.18'
+pod 'LitemobAd', '1.8.8'
 ```
 
-`LitemobAd` `1.7.9` 是静态库，头文件 `#import <LitemobAd/LitemobSDK.h>`。这一版不再附带 `LTMBAdSDK.bundle`、`LML15ADSDK.bundle`、`LTMBBaseResources.bundle`。`TDAdsLtmb` `1.1.2.17` 按这个模块编译。`1.1.2.15` 及更早仍引用旧的 `LitemobSDK`，不能和 `LitemobAd` 装在一起。对方 pod 会把 Always Embed Swift Standard Libraries 设为 YES。这个 xcframework 是静态库，不用 Embed。`TDAdsAdGain` 与 `TDAdsLtmb` 当前 `1.1.2.17`；`TDAdsJDSDK` 仍为 `1.1.2.15`；`TDAdsBase` / `TDAdsSDK` 仍是 `1.1.2.13`。
+`LitemobAd` `1.8.8` 是静态库，头文件 `#import <LitemobAd/LitemobSDK.h>`。资源包为 `LitemobSDK.bundle`、`LitemobBaseSDK.bundle`、`LmbAdSDK.bundle`、`LTMBAdSDK.bundle`、`LML15ADSDK.bundle`、`LTMAdSDK.bundle`。`TDAdsLtmb` `1.1.2.18` 按这个模块编译。`1.1.2.15` 及更早仍引用旧的 `LitemobSDK`，不能和 `LitemobAd` 装在一起。对方 pod 会把 Always Embed Swift Standard Libraries 设为 YES。这个 xcframework 是静态库，不用 Embed。`TDAdsAdGain` 与 `TDAdsLtmb` 当前 `1.1.2.18`；`TDAdsJDSDK` 仍为 `1.1.2.15`；`TDAdsBase` / `TDAdsSDK` 仍是 `1.1.2.13`。
 
 ---
 
@@ -946,7 +946,7 @@ if ([self.splash entryAdScenario:@"your_scene"]) {
 
 `onAdClosed` 后请从容器移除 Banner（Android `removeAllViews`，iOS 去掉子 View）。SDK 不会替你拆容器。离开页面 `onDestroy`。到达展示场景时调 `entryAdScenario`，不要在 `isReady` 轮询里调。
 
-AdGain：**iOS** 已对接官方 `AdGainBannerView`（Load 前按 `TDAdSize` 设 frame，默认屏宽×50pt，须有 `viewController`）。**Android** `adgain-sdk-4.2.8` 对接官方 `BannerAd`，请求 `setWidth`/`setHeight` 用同一套 `TDAdSize`（默认屏宽×50dp 的像素），Show 时 `getBannerView()` 进宿主 container。Sigmob 双端暂不支持 Banner。
+AdGain：**iOS** 已对接官方 `AdGainBannerView`（Load 前按 `TDAdSize` 设 frame，默认屏宽×50pt，须有 `viewController`）。**Android** `adgain-sdk-4.2.9.2` 对接官方 `BannerAd`，请求 `setWidth`/`setHeight` 用同一套 `TDAdSize`（默认屏宽×50dp 的像素），Show 时 `getBannerView()` 进宿主 container。Sigmob 双端暂不支持 Banner。
 
 ---
 
@@ -1452,11 +1452,11 @@ Android 不行，必须主进程。iOS 在 `didFinishLaunching`。
 **JinDai 的 `YDSDK-release.aar` 从哪下？**  
 [02 Android 集成](#02-android-集成) JinDai 一节有下载地址。放到 `app/libs/` 后按该页依赖接入。
 
-**AdGain 的 `adgain-sdk-4.2.8.aar` 从哪下？**  
+**AdGain 的 `adgain-sdk-4.2.9.2.aar` 从哪下？**  
 [02 Android 集成](#02-android-集成) AdGain 一节有下载地址。放到 `app/libs/` 后按该页依赖接入。
 
 **本地全量包从哪下？**  
-[02 Android 集成](#02-android-集成)「本地全量包集成与下载」。压缩包 `td-sdk-android-1.1.2.13-full.zip` 与第 3 节一一对应：核心为 `1.1.2.11`，JinDai 桥为 `1.1.2.12`，AdGain 桥与 LiteMob 桥为 `1.1.2.14`，另有 JinDai、AdGain、LiteMob 官方包。解压到 `app/libs/` 后按该节依赖接入。
+[02 Android 集成](#02-android-集成)「本地全量包集成与下载」。压缩包 `td-sdk-android-1.1.2.13-full.zip`：核心 `1.1.2.11`，JinDai 桥 `1.1.2.12`，包内 AdGain 桥与 LiteMob 桥 aar 是 `1.1.2.15`，AdGain 官方包是 `adgain-sdk-4.2.9.2.aar`，LiteMob 官方 `core` 是 `3.7.4`。解压到 `app/libs/` 后按该节依赖接入。
 
 **插屏报 adapter 缺失，激励却正常？**  
 激励和插屏是不同模块。Android / iOS 都要单独加对应 TD 模块和三方 SDK。见 [02](./02_Android集成.md) / [03](./03_iOS集成.md)。

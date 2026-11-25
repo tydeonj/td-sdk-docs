@@ -41,13 +41,13 @@ target 'YourApp' do
   pod 'TDAdsJDSDK', '1.1.2.15'
   pod 'JinDaiSDK', :subspecs => ['JinDaiSDK']
 
-  # AdGain（Trunk 没有 4.2.8.4 时按 AdGain 文档改 :path）。适配器 1.1.2.17，核心仍用上面的 ver
-  pod 'TDAdsAdGain', '1.1.2.17'
-  pod 'AdGainSDK', '4.2.8.4'
+  # AdGain（Trunk 没有 4.2.8.9 时按 AdGain 文档改 :path）。适配器 1.1.2.18，核心仍用上面的 ver
+  pod 'TDAdsAdGain', '1.1.2.18'
+  pod 'AdGainSDK', '4.2.8.9'
 
   # LiteMob
-  pod 'TDAdsLtmb', '1.1.2.17'
-  pod 'LitemobAd', '1.7.9'
+  pod 'TDAdsLtmb', '1.1.2.18'
+  pod 'LitemobAd', '1.8.8'
 end
 ```
 
@@ -65,18 +65,18 @@ end
 
 ### AdGain
 
-Trunk 若尚未收录 `AdGainSDK` `4.2.8.4`，按 AdGain 官方仓库把 SDK 放到本地后 `:path` 引入（不要把账号写进文档）。Android 对方 SDK 版本跟 AdGain Android 官方，与 iOS 版本号可以不同。
+Trunk 若尚未收录 `AdGainSDK` `4.2.8.9`，按 AdGain 官方仓库把 SDK 放到本地后 `:path` 引入（不要把账号写进文档）。Android 对方 SDK 版本跟 AdGain Android 官方，与 iOS 版本号可以不同。
 
 **JinDai、AdGain 没有 IDFA 不出广告。** 须 ATT 授权；`setAuthUID` 默认关，用户同意后、**init 前**打开，见 [04](./04_初始化与隐私.md)。
 
 ### LiteMob
 
 ```ruby
-pod 'TDAdsLtmb', '1.1.2.17'
-pod 'LitemobAd', '1.7.9'
+pod 'TDAdsLtmb', '1.1.2.18'
+pod 'LitemobAd', '1.8.8'
 ```
 
-`LitemobAd` `1.7.9` 是静态库，头文件 `#import <LitemobAd/LitemobSDK.h>`。这一版不再附带 `LTMBAdSDK.bundle`、`LML15ADSDK.bundle`、`LTMBBaseResources.bundle`。`TDAdsLtmb` `1.1.2.17` 按这个模块编译。`1.1.2.15` 及更早仍引用旧的 `LitemobSDK`，不能和 `LitemobAd` 装在一起。对方 pod 会把 Always Embed Swift Standard Libraries 设为 YES。这个 xcframework 是静态库，不用 Embed。`TDAdsAdGain` 与 `TDAdsLtmb` 当前 `1.1.2.17`；`TDAdsJDSDK` 仍为 `1.1.2.15`；`TDAdsBase` / `TDAdsSDK` 仍是 `1.1.2.13`。
+`LitemobAd` `1.8.8` 是静态库，头文件 `#import <LitemobAd/LitemobSDK.h>`。资源包为 `LitemobSDK.bundle`、`LitemobBaseSDK.bundle`、`LmbAdSDK.bundle`、`LTMBAdSDK.bundle`、`LML15ADSDK.bundle`、`LTMAdSDK.bundle`。`TDAdsLtmb` `1.1.2.18` 按这个模块编译。`1.1.2.15` 及更早仍引用旧的 `LitemobSDK`，不能和 `LitemobAd` 装在一起。对方 pod 会把 Always Embed Swift Standard Libraries 设为 YES。这个 xcframework 是静态库，不用 Embed。`TDAdsAdGain` 与 `TDAdsLtmb` 当前 `1.1.2.18`；`TDAdsJDSDK` 仍为 `1.1.2.15`；`TDAdsBase` / `TDAdsSDK` 仍是 `1.1.2.13`。
 
 ---
 
